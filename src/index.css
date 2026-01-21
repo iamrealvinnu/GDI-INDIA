@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+:root {
+  --grms-blue: #000052;  /* example: Tailwind's purple-800 */
+}
