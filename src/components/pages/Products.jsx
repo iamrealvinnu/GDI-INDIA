@@ -180,13 +180,13 @@ const allProducts = [...operationalProducts];
 // Customer testimonials data
 const testimonials = [
   {
-    name: "Sarah Chen",
+    name: "Sofia Aravind",
     role: "CTO, TechForward Inc.",
     quote:
-      "Talentics ERP reduced our HR processing time by 70%. The AI-driven insights transformed how we manage talent.",
+      "We had an amazing experience working with GDI Nexus on the Ben’s Stamina Factory app. Their team brought our vision to life with a powerful, intuitive, and future-ready application. The level of innovation, technical expertise, and attention to detail was impressive throughout the project. What truly sets them apart is their mindset—they’re not just developers, they’re true digital transformation partners. Seamless collaboration, quick turnaround, and a strong commitment to excellence. We highly recommend GDI Nexus to any business looking to build impactful digital solutions!.would like to thank the entire team Balaji,Nithya,Shanjana,Krishna,Vinay for the exceptional service.",
     avatar:
       "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=200&q=80",
-    product: "Talentics ERP",
+    product: "Ben's Stamina Factory ",
     rating: 5
   },
   {
