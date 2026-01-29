@@ -251,7 +251,7 @@ function Contact() {
                     <motion.a
                       key={i}
                       whileHover={{ scale: 1.1, y: -5 }}
-                      href="#"
+                      href="https://www.linkedin.com/in/gdi-nexus-b44196308/"
                       className={`w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white text-xl transition-all ${social.color}`}
                     >
                       {social.icon}

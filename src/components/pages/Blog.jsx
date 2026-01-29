@@ -25,21 +25,55 @@ const blogData = [
     excerpt:
       "We analyze the failure modes of generative models in high-stakes finance and outline our proprietary framework for ensuring causal reasoning in runtime environments.",
     content: `
-      <h2>The Determinism Gap</h2>
-      <p>In the current landscape of Large Language Models (LLMs), the industry has largely accepted stochasticity—randomness—as an inherent byproduct of intelligence. However, in the Financial Technology sector, "mostly correct" is effectively a failure state.</p>
-      
-      <blockquote>"True enterprise intelligence is not about the breadth of what a model knows, but the reliability of how it reasons under constraints."</blockquote>
-      
-      <h2>The Nexus Causal Framework</h2>
-      <p>At GDI Nexus, we have developed a proprietary layer that sits atop standard transformer architectures. We call this the 'Causal Governor.' Instead of allowing the model to hallucinate a path to an answer, the Governor forces the agent to map its reasoning onto a predefined logic manifold.</p>
-      
-      <p>Key pillars of this protocol include:</p>
-      <ul>
-        <li><strong>Deterministic Routing:</strong> Ensuring that specific inputs always trigger high-confidence tool-use paths.</li>
-        <li><strong>Causal Auditing:</strong> A secondary 'critic' agent that verifies every logical leap against real-truth data.</li>
-        <li><strong>Runtime Governance:</strong> Mathematical guardrails that prevent hallucination.</li>
-      </ul>
-    `,
+<h2>⚙️ The Determinism Gap in Enterprise AI</h2>
+<p>
+Large Language Models have normalized probabilistic reasoning.
+While effective for consumer use cases, this approach introduces
+unacceptable risk in regulated financial environments.
+</p>
+
+<p>
+When decisions impact capital, compliance, and customer trust,
+<strong>“mostly correct” becomes a failure condition</strong>.
+</p>
+
+<blockquote>
+Reliability is not a model feature — it is a system design choice.
+</blockquote>
+
+<hr/>
+
+<h2>🧠 From Generation to Governed Intelligence</h2>
+<p>
+At GDI Nexus, AI systems are treated as decision infrastructure —
+not creative engines. Intelligence must operate inside
+clearly defined constraints with predictable outcomes.
+</p>
+
+<h3>🛡️ The Causal Governor Layer</h3>
+<p>
+The Causal Governor enforces structured reasoning at runtime.
+Every response is mapped to a verified logical path,
+eliminating probabilistic shortcuts.
+</p>
+
+<ul>
+  <li>🔁 <strong>Deterministic Routing</strong><br/>
+  Inputs always trigger predefined execution paths.</li>
+
+  <li>🔍 <strong>Causal Auditing</strong><br/>
+  Each reasoning step is validated against trusted data.</li>
+
+  <li>🚧 <strong>Runtime Governance</strong><br/>
+  Active guardrails prevent hallucination and policy drift.</li>
+</ul>
+
+<p>
+The outcome is intelligence that is
+<strong>auditable, compliant, and production-ready</strong>.
+</p>
+`,
+
     image:
       "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065&auto=format&fit=crop",
     author: "Vinay Gupta",
@@ -56,16 +90,53 @@ const blogData = [
     excerpt:
       "Watch Girish Girigowda's keynote on de-risking massive infrastructure shifts using the GDI Nexus phased migration protocol.",
     content: `
-      <h2>Infrastructure as a Living System</h2>
-      <p>Modern enterprises require more than just a new hosting environment; they require 'Elastic Liquidity'.</p>
-      
-      <p>During his recent keynote, Girish Girigowda outlined the GDI Nexus 3-Phase Protocol:</p>
-      <ol>
-        <li><strong>De-coupling:</strong> Isolating the business logic from legacy systems.</li>
-        <li><strong>Containerization:</strong> Moving logic into micro-services that scale independently.</li>
-        <li><strong>Cloud Native Orchestration:</strong> Leveraging Azure's serverless ecosystem to reduce overhead by 40%.</li>
-      </ol>
-    `,
+<h2>☁️ Enterprises Are Living Systems</h2>
+<p>
+Cloud migration is often framed as an infrastructure upgrade.
+In reality, it represents a fundamental shift in how
+software is built, scaled, and operated.
+</p>
+
+<p>
+Modern enterprises demand elasticity across:
+</p>
+
+<ul>
+  <li>⚡ Compute and performance</li>
+  <li>🏗️ Architecture and design</li>
+  <li>💰 Cost models and efficiency</li>
+  <li>🚀 Operational velocity</li>
+</ul>
+
+<hr/>
+
+<h2>📐 The GDI Nexus Migration Model</h2>
+<p>
+This phased strategy minimizes risk while enabling
+continuous progress toward cloud-native systems.
+</p>
+
+<ol>
+  <li>
+    <strong>Decoupling</strong><br/>
+    🔗 Separate business logic from legacy constraints
+  </li>
+  <li>
+    <strong>Containerization</strong><br/>
+    📦 Enable independent scaling and deployment
+  </li>
+  <li>
+    <strong>Cloud-Native Orchestration</strong><br/>
+    ☁️ Reduce operational overhead using Azure services
+  </li>
+</ol>
+
+<p>
+The result is incremental migration with
+<strong>maximum stability and long-term resilience</strong>.
+</p>
+`,
+
     videoThumbnail:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop",
     author: "Girish Girigowda",
@@ -85,128 +156,159 @@ const blogData = [
     excerpt:
       "In an era of constant disruption, resilient intelligence blends human judgment with machine scale to build systems that adapt, endure, and earn trust under pressure.",
     content: `
-    <h2>Navigating a World of Constant Change</h2>
-    <p>
-      Digital systems today operate in environments defined by volatility, uncertainty, and rapid transformation.
-      Resilient intelligence is the capability to adapt without breaking—maintaining continuity even when conditions shift unexpectedly.
-    </p>
+<h2>🌍 Navigating a World of Constant Change</h2>
+<p>
+Digital systems today operate in environments defined by volatility,
+uncertainty, and rapid transformation. Intelligence that works only
+under ideal conditions is no longer sufficient.
+</p>
 
-    <blockquote>
-      "The future belongs to those who can balance innovation with responsibility, speed with safety, and intelligence with integrity."
-    </blockquote>
+<p>
+Resilient intelligence is the capability to adapt without breaking —
+maintaining continuity even when conditions shift unexpectedly.
+</p>
 
-    <h2>Why Resilience Matters</h2>
-    <p>
-      Traditional intelligence systems optimize for performance under ideal conditions.
-      Resilient systems, by contrast, are designed to perform <em>under pressure</em>.
-    </p>
+<!-- IMAGE 1 -->
+<div style="margin:56px 0;">
+  <img
+    src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000"
+    alt="Digital resilience and intelligence"
+    style="width:50%; border-radius:28px;"
+  />
+</div>
 
-    <ul>
-      <li><strong>Security First:</strong> Ensures continuity even during failure or attack.</li>
-      <li><strong>Adaptability:</strong> Systems must pivot without collapsing.</li>
-      <li><strong>Trust & Transparency:</strong> Accountability is as critical as accuracy.</li>
-    </ul>
+<hr/>
 
-    <h2>The Human + Machine Equation</h2>
-    <p>
-      Resilient intelligence is not artificial intelligence alone.
-      It is the fusion of complementary strengths:
-    </p>
+<h2>🛡️ Why Resilience Matters</h2>
+<p>
+Traditional intelligence systems optimize for performance under
+stable conditions. Resilient systems are designed to perform
+<strong>under pressure</strong>.
+</p>
 
-    <ul>
-      <li><strong>Humans:</strong> Empathy, ethics, judgment, and strategic vision.</li>
-      <li><strong>Machines:</strong> Scale, speed, consistency, and data-driven insight.</li>
-    </ul>
+<ul>
+  <li>
+    🔐 <strong>Security First</strong><br/>
+    Ensures continuity even during failure or attack.
+  </li>
+  <li>
+    🔄 <strong>Adaptability</strong><br/>
+    Systems must pivot without collapsing.
+  </li>
+  <li>
+    🔍 <strong>Trust & Transparency</strong><br/>
+    Accountability is as critical as accuracy.
+  </li>
+</ul>
 
-    <p>
-      When designed together, human and machine intelligence form systems that are not only powerful,
-      but dependable—capable of navigating complexity without losing alignment or trust.
-    </p>
-  `,
+<!-- IMAGE 2 -->
+<div style="margin:56px 0;">
+  <img
+    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2000"
+    alt="System reliability and security"
+    style="width:50%; border-radius:28px;"
+  />
+</div>
+
+<hr/>
+
+<blockquote>
+The future belongs to those who can balance innovation with responsibility,
+speed with safety, and intelligence with integrity.
+</blockquote>
+
+<hr/>
+
+<h2>🤝 The Human + Machine Equation</h2>
+<p>
+Resilient intelligence is not artificial intelligence alone.
+It is the fusion of complementary strengths — combining human judgment
+with machine-scale execution.
+</p>
+
+<ul>
+  <li>
+    🧠 <strong>Humans</strong><br/>
+    Empathy, ethics, judgment, and strategic vision.
+  </li>
+  <li>
+    ⚙️ <strong>Machines</strong><br/>
+    Scale, speed, consistency, and data-driven insight.
+  </li>
+</ul>
+
+<!-- IMAGE 3 -->
+<div style="margin:56px 0;">
+  <img
+    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2000"
+    alt="Human and machine collaboration"
+    style="width:50%; border-radius:28px;"
+  />
+</div>
+
+<p>
+When designed together, human and machine intelligence form systems
+that are not only powerful, but dependable — capable of navigating
+complexity without losing alignment or trust.
+</p>
+`
+,
     image:
       "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=2065&auto=format&fit=crop",
     author: "Nithya Joghee",
     authorRole: "Project Manager"
   },
   {
-  id: "p-004",
-  type: "featured",
-  date: "FEB 02, 2026",
-  readTime: "7 MIN READ",
-  tags: [
-    "Machine Learning",
-    "NLP",
-    "ML.NET",
-    ".NET Enterprise"
-  ],
-  title: "Intelligent Text Processing with ML.NET for Enterprise NLP",
-  excerpt:
-    "ML.NET enables enterprises to build secure, high-performance NLP systems directly within the .NET ecosystem—without external ML stacks.",
-  content: `
-    <h2>Enterprise-Grade NLP Inside the .NET Ecosystem</h2>
-    <p>
-      ML.NET allows .NET developers to build powerful Natural Language Processing (NLP)
-      solutions directly in C# and ASP.NET Core. This eliminates the need for
-      external machine learning stacks while maintaining full control over data,
-      models, and deployment.
-    </p>
+    id: "p-004",
+    type: "featured",
+    date: "FEB 02, 2026",
+    readTime: "7 MIN READ",
+    tags: ["Machine Learning", "NLP", "ML.NET", ".NET Enterprise"],
+    title: "Intelligent Text Processing with ML.NET for Enterprise NLP",
+    excerpt:
+      "ML.NET enables enterprises to build secure, high-performance NLP systems directly within the .NET ecosystem—without external ML stacks.",
+    content: `
+<h2>🧪 Enterprise NLP Without External Dependencies</h2>
+<p>
+ML.NET enables production-grade NLP systems entirely
+within the .NET ecosystem — eliminating external ML stacks
+while preserving control and security.
+</p>
 
-    <blockquote>
-      "Deterministic business logic combined with probabilistic machine learning
-      creates systems that are both intelligent and dependable."
-    </blockquote>
+<blockquote>
+Enterprise intelligence thrives when aligned with engineering discipline.
+</blockquote>
 
-    <h2>Pipeline-Driven Text Intelligence</h2>
-    <p>
-      ML.NET uses a pipeline-based architecture where raw text is transformed
-      into numerical features that machine learning models can interpret.
-      This approach ensures reproducibility, maintainability, and strong typing—
-      essential for production systems.
-    </p>
+<hr/>
 
-    <h2>Core NLP Capabilities</h2>
-    <ul>
-      <li><strong>Text Preprocessing:</strong> Tokenization, normalization, stop-word removal, character and word n-grams.</li>
-      <li><strong>Feature Extraction:</strong> Built-in TF-IDF featurization with optional pretrained embeddings.</li>
-      <li><strong>Model Training:</strong> Binary and multi-class classification using SDCA, FastTree, and LightGBM.</li>
-      <li><strong>Model Deployment:</strong> Serialized models hosted inside ASP.NET Core APIs for real-time inference.</li>
-    </ul>
+<h2>🔧 Pipeline-Driven Intelligence</h2>
+<ul>
+  <li>📄 Raw text → structured features</li>
+  <li>🔢 Strong typing and reproducibility</li>
+  <li>🚀 Predictable behavior across environments</li>
+</ul>
 
-    <h2>A Typical ML.NET NLP Pipeline</h2>
-    <pre>
-var pipeline = mlContext.Transforms.Text.FeaturizeText(
-    outputColumnName: "Features",
-    inputColumnName: nameof(InputData.Text))
-  .Append(mlContext.MulticlassClassification
-    .Trainers.SdcaMaximumEntropy())
-  .Append(mlContext.Transforms
-    .Conversion.MapKeyToValue("PredictedLabel"));
-    </pre>
+<h2>📚 Core NLP Capabilities</h2>
+<ul>
+  <li>✂️ <strong>Text Processing:</strong> Tokenization, normalization, n-grams</li>
+  <li>📐 <strong>Feature Engineering:</strong> TF-IDF, embeddings</li>
+  <li>🤖 <strong>Model Training:</strong> SDCA, FastTree, LightGBM</li>
+  <li>⚡ <strong>Deployment:</strong> Low-latency ASP.NET Core APIs</li>
+</ul>
 
-    <p>
-      This pipeline-first design guarantees consistency across environments
-      while supporting CI/CD workflows and containerized deployments.
-    </p>
-
-    <h2>Why ML.NET for Enterprise NLP?</h2>
-    <ul>
-      <li><strong>Native .NET Integration:</strong> Seamless use in C# and ASP.NET Core.</li>
-      <li><strong>Low-Latency Inference:</strong> Optimized for real-time workloads.</li>
-      <li><strong>Security & Control:</strong> No external data or model dependencies.</li>
-      <li><strong>Production-Ready:</strong> Easy deployment, versioning, and governance.</li>
-    </ul>
-
-    <p>
-      ML.NET empowers organizations to build intelligent, scalable, and secure
-      NLP systems that align perfectly with enterprise engineering standards.
-    </p>
-  `,
-  image:
-    "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2065&auto=format&fit=crop",
-  author: "Shanjanaa Bharath",
-  authorRole: "Technical Lead"
-}
-
+<h2>🧱 Why ML.NET Fits Enterprise NLP</h2>
+<ul>
+  <li>✅ Native .NET integration</li>
+  <li>✅ Secure data boundaries</li>
+  <li>✅ CI/CD-friendly lifecycle</li>
+  <li>✅ Production-ready governance</li>
+</ul>
+`,
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2065&auto=format&fit=crop",
+    author: "Shanjanaa Bharath",
+    authorRole: "Technical Lead"
+  }
 ];
 
 const Blog = () => {
@@ -243,7 +345,7 @@ const Blog = () => {
               Nexus Intelligence Stream
             </span>
             {/* Titles matched to your screenshot styling */}
-            <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-6 uppercase italic">
+            <h1 className="text-6xl md:text-5xl font-black text-white tracking-tighter leading-[0.85] mb-6 uppercase italic">
               ENGINEERING <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(96,165,250,0.3)]">
                 THOUGHT.
@@ -406,10 +508,10 @@ const ProtocolReader = ({ post, onClose }) => {
         <div className="flex flex-col lg:flex-row gap-16">
           {/* --- MAIN CONTENT COLUMN --- */}
           <div className="lg:w-2/3">
-            <span className="text-[11px] font-black text-[var(--grms-blue)] uppercase tracking-[0.4em] mb-4 block">
+            {/* <span className="text-[11px] font-black text-[var(--grms-blue)] uppercase tracking-[0.4em] mb-4 block">
               {post.tags.join(" // ")}
-            </span>
-            <h1 className="text-5xl md:text-7xl font-black text-slate-950 tracking-tighter uppercase italic leading-[0.9] mb-10">
+            </span> */}
+            <h1 className="text-2xl md:text-4xl font-black text-slate-950 tracking-tighter uppercase italic leading-[0.9] mb-10">
               {post.title}
             </h1>
 
