@@ -345,7 +345,7 @@ const Blog = () => {
               Nexus Intelligence Stream
             </span>
             {/* Titles matched to your screenshot styling */}
-            <h1 className="text-6xl md:text-5xl font-black text-white tracking-tighter leading-[0.85] mb-6 uppercase italic">
+            <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-6 uppercase italic">
               ENGINEERING <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(96,165,250,0.3)]">
                 THOUGHT.

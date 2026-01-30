@@ -277,7 +277,7 @@ function Products() {
             <span className="inline-block px-6 py-2 mb-8 rounded-full border border-blue-100 bg-white/80 backdrop-blur-md text-[var(--grms-blue)] text-[10px] font-black tracking-[.5em] uppercase shadow-sm">
               Proprietary Neural Assets
             </span>
-            <h1 className="text-6xl md:text-6xl font-black tracking-tighter leading-[0.8] mb-12 uppercase italic">
+            <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.8] mb-12 uppercase italic">
               ENGINEERED <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--grms-blue)] via-indigo-600 to-purple-600">
                 PRODUCT ECOSYSTEM.
