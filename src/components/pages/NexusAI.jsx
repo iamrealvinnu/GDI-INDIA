@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
 // 🔹 API ENDPOINT
-const API_URL = "/api/Chat";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/Chat`;
+// const API_URL = "/api/Chat";
 
 const NexusAI = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +39,8 @@ const NexusAI = () => {
         {
           headers: {
             "Content-Type": "application/json"
-          }
+          },
+          timeout: 5000
         }
       );
 
@@ -47,6 +49,11 @@ const NexusAI = () => {
         { role: "ai", content: response.data.answer }
       ]);
     } catch (error) {
+      let errorMessage = "Protocol failure. Nexus Core unreachable.";
+
+      if (error.code === "ECONNABORTED") {
+        errorMessage = "Response timeout. Nexus Core is thinking too long.";
+      }
       setMessages((prev) => [
         ...prev,
         {
@@ -117,10 +124,10 @@ const NexusAI = () => {
                   <div
                     className={`px-4 py-4 rounded-xl max-w-[85%] font-bold
                  ${
-                    msg.role === "user"
-                    ? "bg-blue-600 text-white rounded-br-none"
-                    : "bg-white text-slate-800 rounded-tl-none"
-                  }`}
+                   msg.role === "user"
+                     ? "bg-blue-600 text-white rounded-br-none"
+                     : "bg-white text-slate-800 rounded-tl-none"
+                 }`}
                   >
                     {msg.content}
                   </div>
