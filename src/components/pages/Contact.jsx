@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
-  FaClock,
   FaLinkedinIn,
   FaTwitter,
   FaFacebookF,
@@ -11,6 +10,7 @@ import {
   FaPaperPlane
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 // Animation Variants
 const fadeInUp = {
@@ -18,48 +18,83 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+const socialLinks = [
+  {
+    icon: <FaLinkedinIn />,
+    url: "https://www.linkedin.com/in/gdi-nexus-b44196308/", // 🔁 replace with real link
+    hover: "hover:bg-blue-700"
+  },
+  {
+    icon: <FaTwitter />,
+    url: "https://twitter.com/gdinexus", // 🔁 replace
+    hover: "hover:bg-sky-500"
+  },
+  {
+    icon: <FaFacebookF />,
+    url: "https://www.facebook.com/gdinexus", // 🔁 replace
+    hover: "hover:bg-indigo-700"
+  }
+];
+
 function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    service: "",
-    message: ""
+    fullName: "",
+    emailAddress: "",
+    companyName: "",
+    phoneNumber: "",
+    serviceFocusId: "",
+    briefing: ""
   });
 
-  const [userLocation, setUserLocation] = useState(null);
-  const [locationError, setLocationError] = useState(null);
+  /* ---------- SERVICE FOCUS ---------- */
+  const [serviceFocusList, setServiceFocusList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  /* ---------- GET SERVICE FOCUS ---------- */
+  useEffect(() => {
+    axios
+      .get("https://nexus1-dev.gdinexus.com:8410/api/Contacts/service-focus")
+      .then((res) => setServiceFocusList(res.data))
+      .catch((err) => console.error("Service Focus fetch failed:", err));
+  }, []);
+
+  /* ---------- INPUT HANDLER ---------- */
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  /* ---------- SUBMIT (POST) ---------- */
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Transmission Received. Our Nexus team will contact you shortly.");
-  };
+    setLoading(true);
 
-  // 🔥 GET CURRENT LOCATION
-  const getCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      setLocationError("Geolocation not supported");
-      return;
+    try {
+      await axios.post(
+        "https://nexus1-dev.gdinexus.com:8410/api/Contacts/create-contact",
+        formData,
+        {
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+
+      console.log("Contact form submitted:", formData);
+      alert("Transmission Received. Our Nexus team will contact you shortly.");
+
+      // Reset
+      setFormData({
+        fullName: "",
+        emailAddress: "",
+        companyName: "",
+        phoneNumber: "",
+        serviceFocusId: "",
+        briefing: ""
+      });
+    } catch (error) {
+      console.error("Contact submit failed:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setUserLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-        setLocationError(null);
-      },
-      () => {
-        setLocationError("Location permission denied");
-      }
-    );
   };
 
   return (
@@ -91,232 +126,163 @@ function Contact() {
 
       {/* --- CONTACT GRID: THE COMMAND CENTER --- */}
       <section className="pb-32 px-6">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            {/* LEFT: THE INTERACTIVE FORM (Glassmorphism) */}
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* FORM */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="lg:col-span-7"
+          >
+            <div className="bg-white/70 backdrop-blur-2xl p-10 rounded-[3.5rem] shadow-xl">
+              <h2 className="text-3xl font-black mb-10 italic uppercase">
+                Initiate Message
+              </h2>
+
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* ROW 1 */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  <InputField
+                    label="Full Name"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                  />
+                  <InputField
+                    label="Email Address"
+                    name="emailAddress"
+                    type="email"
+                    value={formData.emailAddress}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {/* ROW 2 */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  <InputField
+                    label="Company Name"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                  />
+                  <InputField
+                    label="Phone Number"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* SERVICE FOCUS */}
+                <div className="relative group">
+                  <label className="absolute -top-3 left-4 px-2 bg-white text-[10px] font-black tracking-widest uppercase text-slate-400">
+                    Service Focus *
+                  </label>
+                  <select
+                    name="serviceFocusId"
+                    value={formData.serviceFocusId}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-6 py-5 bg-transparent border-2 border-slate-100 rounded-2xl font-bold text-slate-700 focus:border-blue-600"
+                  >
+                    <option value="">SELECT CAPABILITY</option>
+                    {serviceFocusList.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* MESSAGE */}
+                <div className="relative group">
+                  <label className="absolute -top-3 left-4 px-2 bg-white text-[10px] font-black tracking-widest uppercase text-slate-400">
+                    Briefing *
+                  </label>
+                  <textarea
+                    name="briefing"
+                    rows="5"
+                    value={formData.briefing}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-6 py-5 bg-transparent border-2 border-slate-100 rounded-2xl font-bold text-slate-700 focus:border-blue-600"
+                  />
+                </div>
+
+                {/* SUBMIT */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full py-6 rounded-2xl font-black text-lg transition-all
+                    ${
+                      loading
+                        ? "bg-slate-400 cursor-not-allowed"
+                        : "bg-slate-950 hover:bg-blue-600 text-white"
+                    }`}
+                >
+                  {loading ? "TRANSMITTING..." : "TRANSMIT DATA"}
+                  <FaPaperPlane className="inline ml-4" />
+                </button>
+              </form>
+            </div>
+          </motion.div>
+
+          {/* RIGHT: THE SUPPORT INDEX */}
+          <div className="lg:col-span-5 space-y-10">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="lg:col-span-7"
             >
-              <div className="bg-white/70 backdrop-blur-2xl p-8 md:p-12 rounded-[3.5rem] border border-white shadow-[0_40px_100px_rgba(0,0,0,0.08)] relative overflow-hidden group">
-                {/* Decorative Internal Glow */}
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-[var(--grms-blue)]/5 rounded-full blur-3xl transition-all group-hover:scale-150" />
+              <h2 className="text-4xl font-black mb-8 text-slate-950 italic uppercase tracking-tighter">
+                Support Grid
+              </h2>
 
-                <h2 className="text-3xl font-black mb-10 text-slate-950 uppercase tracking-tight italic">
-                  Initiate Message
-                </h2>
-
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-8 relative z-10"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <InputField
-                      label="Full Name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                    <InputField
-                      label="Email Address"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <InputField
-                      label="Company Name"
-                      name="company"
-                      type="text"
-                      value={formData.company}
-                      onChange={handleChange}
-                    />
-                    <InputField
-                      label="Phone Number"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="relative group">
-                    <label className="absolute -top-3 left-4 px-2 bg-white text-[10px] font-black text-slate-400 tracking-widest uppercase group-focus-within:text-[var(--grms-blue)] transition-colors">
-                      Service Focus
-                    </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-6 py-5 bg-transparent border-2 border-slate-100 rounded-2xl focus:border-[var(--grms-blue)] outline-none transition-all appearance-none font-bold text-slate-700"
-                    >
-                      <option value="">SELECT CAPABILITY</option>
-                      {[
-                        "AI Systems",
-                        "Data Architecture",
-                        "Cloud Infrastructure",
-                        "Enterprise Audit"
-                      ].map((s) => (
-                        <option key={s} value={s}>
-                          {s.toUpperCase()}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="relative group">
-                    <label className="absolute -top-3 left-4 px-2 bg-white text-[10px] font-black text-slate-400 tracking-widest uppercase group-focus-within:text-[var(--grms-blue)] transition-colors">
-                      Briefing
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows="5"
-                      placeholder="Describe your digital challenge..."
-                      className="w-full px-6 py-5 bg-transparent border-2 border-slate-100 rounded-2xl focus:border-[var(--grms-blue)] outline-none transition-all font-bold text-slate-700 placeholder:text-slate-300"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full group relative bg-slate-950 text-white py-6 rounded-2xl font-black text-lg overflow-hidden shadow-2xl transition-all hover:-translate-y-1 hover:bg-[var(--grms-blue)]"
-                  >
-                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                    <span className="relative flex items-center justify-center gap-4 tracking-widest">
-                      TRANSMIT DATA{" "}
-                      <FaPaperPlane className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
-                    </span>
-                  </button>
-                </form>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+                <ContactCard
+                  icon={<FaEnvelope />}
+                  title="Digital Mail"
+                  detail="contactus@gdinexus.com"
+                  sub="www.gdinexus.com"
+                  link="mailto:info@gdinexus.com"
+                />
+                <ContactCard
+                  icon={<FaPhone />}
+                  title="Secure Line"
+                  detail="+918056584718 ||  +1(703)987-9955"
+                />
+                <ContactCard
+                  icon={<FaMapMarkerAlt />}
+                  title="HQ Terminal"
+                  detail="33, Thoppan Line, Fingerpost Kandal,Udagamandalam, Nilgiris, Tamil Nadu, India – 643001"
+                />
               </div>
             </motion.div>
 
-            {/* RIGHT: THE SUPPORT INDEX */}
-            <div className="lg:col-span-5 space-y-10">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-              >
-                <h2 className="text-4xl font-black mb-8 text-slate-950 italic uppercase tracking-tighter">
-                  Support Grid
-                </h2>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
-                  <ContactCard
-                    icon={<FaEnvelope />}
-                    title="Digital Mail"
-                    detail="contactus@gdinexus.com"
-                    sub="www.gdinexus.com"
-                    link="mailto:info@gdinexus.com"
-                  />
-                  <ContactCard
-                    icon={<FaPhone />}
-                    title="Secure Line"
-                    detail="+918056584718 ||  +1(703)987-9955"
-                    link="tel:+918056584718"
-                  />
-                  <ContactCard
-                    icon={<FaMapMarkerAlt />}
-                    title="HQ Terminal"
-                    detail="33, Thoppan Line, Fingerpost Kandal,Udagamandalam, Nilgiris, Tamil Nadu, India – 643001"
-                  />
-                </div>
-              </motion.div>
-
-              {/* SOCIAL CONNECT: THE WHITE-ON-DARK TILES */}
-              <div className="bg-slate-950 p-10 rounded-[3rem] shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--grms-blue)]/20 blur-3xl" />
-                <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest italic">
-                  Nexus Social Link
-                </h3>
-                <div className="flex gap-4">
-                  {[
-                    { icon: <FaLinkedinIn />, color: "hover:bg-blue-700" },
-                    { icon: <FaTwitter />, color: "hover:bg-sky-500" },
-                    { icon: <FaFacebookF />, color: "hover:bg-indigo-700" }
-                  ].map((social, i) => (
-                    <motion.a
-                      key={i}
-                      whileHover={{ scale: 1.1, y: -5 }}
-                      href=""
-                      className={`w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white text-xl transition-all ${social.color}`}
-                    >
-                      {social.icon}
-                    </motion.a>
-                  ))}
-                </div>
+            {/* SOCIAL CONNECT: THE WHITE-ON-DARK TILES */}
+            <div className="bg-slate-950 p-10 rounded-[3rem] shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--grms-blue)]/20 blur-3xl" />
+              <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest italic">
+                Nexus Social Link
+              </h3>
+              <div className="flex gap-4">
+                {socialLinks.map((social, i) => (
+                  <motion.a
+                    key={i}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    className={`w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white text-xl transition-all ${social.hover}`}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- MAP SECTION: THE GEOLOCATION --- */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[var(--grms-blue)] to-indigo-600 rounded-[4rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-
-            <div className="relative h-[500px] bg-slate-200 rounded-[4rem] overflow-hidden shadow-2xl border border-white/50">
-              {/* MAP IFRAME */}
-              {userLocation ? (
-                <iframe
-                  title="User Location"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps?q=${userLocation.lat},${userLocation.lng}&z=15&output=embed`}
-                />
-              ) : (
-                <iframe
-                  title="HQ Location"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps?q=11.41185,76.69502&z=15&output=embed"
-                />
-              )}
-
-              {/* CENTER MARKER (YOUR EXISTING STYLE) */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-20 h-20 bg-[var(--grms-blue)] rounded-full flex items-center justify-center text-white text-3xl animate-bounce shadow-2xl">
-                  <FaMapMarkerAlt />
-                </div>
-              </div>
-
-              {/* LOCATE BUTTON */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-                <button
-                  onClick={getCurrentLocation}
-                  className="px-8 py-4 bg-slate-950 text-white font-black rounded-2xl shadow-xl hover:bg-[var(--grms-blue)] transition-all"
-                >
-                  📍 Use My Current Location
-                </button>
-              </div>
-
-              {/* ERROR */}
-              {locationError && (
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-xl font-bold text-red-500 shadow">
-                  {locationError}
-                </div>
-              )}
             </div>
           </div>
         </div>

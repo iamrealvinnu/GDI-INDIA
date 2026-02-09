@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaPaperPlane, FaTimes, FaFingerprint } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
@@ -11,6 +11,7 @@ const NexusAI = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const chatEndRef = useRef(null);
 
   const [messages, setMessages] = useState([
     {
@@ -19,6 +20,13 @@ const NexusAI = () => {
         "Authentication successful. Accessing neural architecture for GDI. How shall we proceed?"
     }
   ]);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end"
+    });
+  }, [messages]);
 
   // 🔹 SEND MESSAGE
   const handleSend = async () => {
@@ -139,6 +147,9 @@ const NexusAI = () => {
                   Nexus Core processing…
                 </p>
               )}
+
+              {/* 👇 SCROLL TARGET */}
+              <div ref={chatEndRef} />
             </div>
 
             {/* INPUT */}
