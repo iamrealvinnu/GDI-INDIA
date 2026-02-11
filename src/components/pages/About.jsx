@@ -66,7 +66,7 @@ function About() {
               className="lg:mt-24 group relative"
             >
               <div className="absolute -inset-4 bg-indigo-100/50 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative bg-slate-900 p-12 rounded-[3rem] text-white shadow-[0_40px_100px_rgba(0,0,0,0.2)]">
+              <div className="relative bg-[var(--grms-blue)] p-12 rounded-[3rem] text-white shadow-[0_40px_100px_rgba(0,0,0,0.2)]">
                 <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-[var(--grms-blue)] text-3xl mb-8">
                   <FaRocket />
                 </div>

@@ -7,7 +7,8 @@ import {
   FaTwitter,
   FaFacebookF,
   FaArrowRight,
-  FaPaperPlane
+  FaPaperPlane,
+  FaInstagram
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -21,17 +22,17 @@ const fadeInUp = {
 const socialLinks = [
   {
     icon: <FaLinkedinIn />,
-    url: "https://www.linkedin.com/in/gdi-nexus-b44196308/", // 🔁 replace with real link
-    hover: "hover:bg-blue-700"
+    url: "https://www.linkedin.com/in/gdi-nexus-b44196308/", 
+    hover: "hover:bg-[var(--grms-blue)]"
   },
   {
-    icon: <FaTwitter />,
-    url: "https://twitter.com/gdinexus", // 🔁 replace
-    hover: "hover:bg-sky-500"
+    icon: <FaInstagram />,
+    url: "https://www.instagram.com/gdi_nexus?igsh=MTF4dXl6MjRrendwMg%3D%3D",
+    hover: "hover:bg-pink-500"
   },
   {
     icon: <FaFacebookF />,
-    url: "https://www.facebook.com/gdinexus", // 🔁 replace
+    url: "https://www.facebook.com/people/Gdi-Nexus/pfbid0ze6CfTdKQU8fsiW2KkevyF9o7Y1SGATYKTmykkmTbWxYdFRWwN9sbpXpDYKbwvnEl/", 
     hover: "hover:bg-indigo-700"
   }
 ];
@@ -220,7 +221,7 @@ function Contact() {
                     ${
                       loading
                         ? "bg-slate-400 cursor-not-allowed"
-                        : "bg-slate-950 hover:bg-blue-600 text-white"
+                        : "bg-[var(--grms-blue)] hover:bg-blue-600 text-white"
                     }`}
                 >
                   {loading ? "TRANSMITTING..." : "TRANSMIT DATA"}
@@ -264,7 +265,7 @@ function Contact() {
             </motion.div>
 
             {/* SOCIAL CONNECT: THE WHITE-ON-DARK TILES */}
-            <div className="bg-slate-950 p-10 rounded-[3rem] shadow-2xl relative overflow-hidden">
+            <div className="bg-[var(--grms-blue)] p-10 rounded-[3rem] shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--grms-blue)]/20 blur-3xl" />
               <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest italic">
                 Nexus Social Link

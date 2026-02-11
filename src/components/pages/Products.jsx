@@ -181,7 +181,6 @@ const allProducts = [...operationalProducts];
 const testimonials = [
   {
     name: "Sofia Aravind",
-    role: "CTO, TechForward Inc.",
     quote:
       "We had an amazing experience working with GDI Nexus on the Ben’s Stamina Factory app. Their team brought our vision to life with a powerful, intuitive, and future-ready application. The level of innovation, technical expertise, and attention to detail was impressive throughout the project. What truly sets them apart is their mindset—they’re not just developers, they’re true digital transformation partners. Seamless collaboration, quick turnaround, and a strong commitment to excellence. We highly recommend GDI Nexus to any business looking to build impactful digital solutions!.would like to thank the entire team Balaji,Nithya,Shanjana,Krishna,Vinay for the exceptional service.",
     avatar:
@@ -191,9 +190,8 @@ const testimonials = [
   },
   {
     name: "Marcus Rodriguez",
-    role: "Operations Director, Global Logistics",
     quote:
-      "WMS & AMS Pro gave us real-time visibility across 12 warehouses. Inventory accuracy is now at 99.8%.",
+      "WMS & AMS Pro gave us real-time visibility across 12 warehouses. Inventory accuracy is now at 99.8%. The platform has streamlined our operations, reduced manual errors, and improved decision-making across the supply chain. With faster reporting and complete transparency, our teams can focus on growth instead of troubleshooting. It’s been a game-changer for efficiency and customer satisfaction. Additionally, order fulfillment speed has improved significantly, ensuring timely deliveries to clients. The scalability of the system also means we can confidently expand without worrying about operational bottlenecks.",
     avatar:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
     product: "WMS & AMS Pro",
@@ -201,9 +199,8 @@ const testimonials = [
   },
   {
     name: "Priya Sharma",
-    role: "Learning Director, Fortune 500",
     quote:
-      "Nexus LMS scaled our training to 50,000 employees. Completion rates increased by 300% with adaptive paths.",
+      "Nexus LMS scaled our training to 50,000 employees. Completion rates increased by 300% with adaptive paths. The platform has simplified onboarding, ensured compliance across departments, and personalized learning experiences for every role. Managers now have clear insights into progress and skill development, enabling smarter workforce planning. With its intuitive design and powerful analytics, Nexus LMS has become the backbone of our employee growth strategy.",
     avatar:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
     product: "Nexus LMS",
@@ -553,7 +550,7 @@ function Products() {
             viewport={{ once: true }}
             className="relative bg-gradient-to-br from-slate-900 to-slate-950 rounded-[4rem] p-16 text-center overflow-hidden"
           >
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]" />
+            <div className="absolute inset-0 bg-[var(--grms-blue)] bg-[size:40px_40px]" />
             <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--grms-blue)]/10 rounded-full blur-3xl -mr-48 -mt-48" />
 
             <div className="relative z-10">

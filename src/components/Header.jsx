@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <nav
-      className="fixed w-full z-[100] px-4"
+      className="w-full z-[100] px-4 py-4"
       style={{ top: "calc(env(safe-area-inset-top) + 1rem)" }}
     >
       <div className="max-w-7xl mx-auto">

@@ -17,7 +17,7 @@ function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050a15] text-white pt-15 pb-10 overflow-hidden border-t border-white/10">
+    <footer className="relative bg-[var(--grms-blue)] text-white pt-15 pb-10 overflow-hidden border-t border-white/10">
       {/* Background Accent: Tech Grid Overlay - Unchanged */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

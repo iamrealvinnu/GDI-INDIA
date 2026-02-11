@@ -5,13 +5,13 @@ import axios from "axios";
 
 // 🔹 API ENDPOINT
 const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/Chat`;
-// const API_URL = "/api/Chat";
 
 const NexusAI = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const inputRef = useRef(null); // New ref for input focus
 
   const [messages, setMessages] = useState([
     {
@@ -21,12 +21,29 @@ const NexusAI = () => {
     }
   ]);
 
+  // Focus input when chat opens
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isOpen]);
+
+  // Scroll to bottom when messages change
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "end"
     });
   }, [messages]);
+
+  // Auto-focus input after sending message
+  useEffect(() => {
+    if (!loading && isOpen && inputRef.current) {
+      inputRef.current?.focus();
+    }
+  }, [loading, isOpen]);
 
   // 🔹 SEND MESSAGE
   const handleSend = async () => {
@@ -57,11 +74,6 @@ const NexusAI = () => {
         { role: "ai", content: response.data.answer }
       ]);
     } catch (error) {
-      let errorMessage = "Protocol failure. Nexus Core unreachable.";
-
-      if (error.code === "ECONNABORTED") {
-        errorMessage = "Response timeout. Nexus Core is thinking too long.";
-      }
       setMessages((prev) => [
         ...prev,
         {
@@ -71,6 +83,14 @@ const NexusAI = () => {
       ]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle Enter key press
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
     }
   };
 
@@ -99,6 +119,7 @@ const NexusAI = () => {
             }}
             transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
             className="absolute right-0 bottom-6 md:bottom-12 w-[90vw] max-w-[420px] max-h-[85vh] bg-white/60 backdrop-blur-3xl border border-white/40 rounded-3xl shadow-[0_80px_150px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
+            onClick={() => inputRef.current?.focus()} // Click anywhere in chat to focus input
           >
             {/* HEADER */}
             <div className="px-10 pt-14 pb-8">
@@ -113,7 +134,7 @@ const NexusAI = () => {
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 rounded-2xl bg-slate-950 text-white flex items-center justify-center"
+                  className="w-10 h-10 rounded-2xl bg-slate-950 text-white flex items-center justify-center hover:bg-slate-800 transition-colors"
                 >
                   <FaTimes size={12} />
                 </button>
@@ -121,7 +142,7 @@ const NexusAI = () => {
             </div>
 
             {/* CHAT STREAM */}
-            <div className="flex-grow px-6 overflow-y-auto space-y-6">
+            <div className="flex-grow px-6 overflow-y-auto space-y-6 pb-4">
               {messages.map((msg, i) => (
                 <div
                   key={i}
@@ -143,9 +164,11 @@ const NexusAI = () => {
               ))}
 
               {loading && (
-                <p className="text-xs text-slate-400 italic">
-                  Nexus Core processing…
-                </p>
+                <div className="flex justify-start">
+                  <div className="px-4 py-4 rounded-xl bg-white text-slate-800 rounded-tl-none font-bold animate-pulse">
+                    Nexus Core processing…
+                  </div>
+                </div>
               )}
 
               {/* 👇 SCROLL TARGET */}
@@ -153,21 +176,27 @@ const NexusAI = () => {
             </div>
 
             {/* INPUT */}
-            <div className="p-10">
-              <div className="flex items-center bg-white border rounded-xl p-2">
+            <div className="p-10 pt-4">
+              <div className="flex items-center bg-white border border-gray-200 rounded-xl p-2 hover:border-blue-400 transition-colors">
                 <input
+                  ref={inputRef} // Attach ref here
                   type="text"
                   placeholder="Enter Command..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                  onKeyDown={handleKeyDown}
                   disabled={loading}
-                  className="flex-grow px-5 py-4 outline-none font-bold"
+                  className="flex-grow px-5 py-4 outline-none font-bold bg-transparent placeholder:text-gray-400"
+                  autoFocus
                 />
                 <button
                   onClick={handleSend}
-                  disabled={loading}
-                  className="w-12 h-12 bg-slate-950 text-white rounded-2xl flex items-center justify-center disabled:opacity-50"
+                  disabled={loading || !input.trim()}
+                  className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
+                    loading || !input.trim()
+                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      : "bg-slate-950 text-white hover:bg-blue-600 hover:scale-105 active:scale-95"
+                  }`}
                 >
                   <FaPaperPlane size={14} />
                 </button>
@@ -179,19 +208,36 @@ const NexusAI = () => {
 
       {/* TRIGGER */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-white rounded-xl shadow-xl flex items-center justify-center"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-16 h-16 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-xl flex items-center justify-center relative group hover:shadow-2xl transition-all"
       >
-        {!isOpen ? <FaFingerprint size={22} /> : <FaTimes size={20} />}
+        {!isOpen ? (
+          <FaFingerprint size={22} className="text-blue-600" />
+        ) : (
+          <FaTimes size={20} className="text-blue-600" />
+        )}
+        
+        {/* Animated border */}
         <motion.div
-          animate={{ top: ["-100%", "200%"] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 w-full h-[2px] bg-[var(--grms-blue)]/30 shadow-[0_0_10px_var(--grms-blue)] pointer-events-none"
+          animate={{ 
+            top : ["-100%", "200%"],
+            transition: { 
+              duration: 3, 
+              repeat: Infinity, 
+              ease: "linear" 
+            } 
+          }}
+          className="absolute inset-0 rounded-xl border-2 border-transparent border-t-blue-400/50 pointer-events-none"
         />
+
         {/* Tooltip */}
-        <div className="absolute right-20 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-950 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-2xl">
-          <p className="text-[8px] font-black tracking-[0.2em] uppercase whitespace-nowrap italic">
-            Terminal: Ready
+        <div className="absolute right-20 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-950 text-white rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-2xl whitespace-nowrap">
+          <p className="text-[8px] font-black tracking-[0.2em] uppercase italic">
+            Terminal: {isOpen ? "Active" : "Ready"}
           </p>
         </div>
       </motion.button>

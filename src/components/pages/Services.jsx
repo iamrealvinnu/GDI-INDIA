@@ -130,7 +130,7 @@ function Services() {
       {/* --- MICROSOFT PARTNERSHIP: THE OBSIDIAN HUB (FIXED TEXT VISIBILITY) --- */}
       <section className="py-32 px-6">
         <div className="container mx-auto">
-          <div className="bg-[#020617] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl border border-white/5">
+          <div className="bg-[var(--grms-blue)] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl border border-white/5">
             <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: `radial-gradient(var(--grms-blue) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
             
             <div className="relative z-10 max-w-5xl mx-auto">

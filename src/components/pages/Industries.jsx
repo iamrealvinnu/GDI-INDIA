@@ -139,7 +139,7 @@ function Industries() {
       {/* --- STATS: THE IMPACT SCORE (COLOR UPDATED TO WHITE) --- */}
       <section className="py-32 px-6">
         <div className="container mx-auto">
-          <div className="bg-[#020617] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.4)]">
+          <div className="bg-[var(--grms-blue)] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.4)]">
             {/* Ambient Background Glow */}
             <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[var(--grms-blue)]/10 rounded-full blur-[100px] pointer-events-none" />
             
