@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import {
   FaLinkedinIn,
   FaTwitter,
+  FaInstagram,
+  FaFacebookF,
   FaArrowRight,
   FaEnvelope,
   FaMapMarkerAlt,
@@ -90,6 +92,18 @@ function Footer() {
                 className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--grms-blue)] hover:border-[var(--grms-blue)] transition-all"
               >
                 <FaLinkedinIn className="text-white" />
+              </a>
+              <a
+                href="https://www.instagram.com/gdi_nexus?igsh=MTF4dXl6MjRrendwMg%3D%3D"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-pink-700 hover:border-[var(--grms-blue)] transition-all"
+              >
+                <FaInstagram className="text-white" />
+              </a>
+              <a
+                href="https://www.facebook.com/people/Gdi-Nexus/pfbid0ze6CfTdKQU8fsiW2KkevyF9o7Y1SGATYKTmykkmTbWxYdFRWwN9sbpXpDYKbwvnEl/"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-indigo-700 hover:border-[var(--grms-blue)] transition-all"
+              >
+                <FaFacebookF className="text-white" />
               </a>
             </div>
 

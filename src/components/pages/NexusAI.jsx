@@ -642,7 +642,7 @@ const NexusAI = () => {
               className="absolute right-0 bottom-6 md:bottom-12 
 w-[95vw] sm:w-[90vw] md:w-[420px] lg:w-[500px]
 max-h-[85vh]
-bg-white/60 backdrop-blur-3xl border border-white/40 rounded-3xl shadow-[0_80px_150px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
+bg-white/60 backdrop-blur-3xl border border-[var(--grms-blue)] rounded-3xl shadow-[0_80px_150px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
               onClick={() => {
                 // Click anywhere in chat to focus input
                 setTimeout(() => {
@@ -654,13 +654,13 @@ bg-white/60 backdrop-blur-3xl border border-white/40 rounded-3xl shadow-[0_80px_
               <div className="px-10 pt-14 pb-8">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-[9px] font-black text-blue-600 uppercase tracking-[0.4em]">
+                    <h2 className="text-[9px] font-black text-[var(--grms-blue)] uppercase tracking-[0.4em]">
                       {productView === "details"
                         ? "Product Explorer"
                         : "Intelligence Terminal"}
                     </h2>
                     <h1 className="text-3xl font-black uppercase italic">
-                      NEXUS <span className="text-blue-600">CORE</span>
+                      NEXUS <span className="text-[var(--grms-blue)]">CORE</span>
                     </h1>
                   </div>
                   <button
@@ -693,7 +693,7 @@ bg-white/60 backdrop-blur-3xl border border-white/40 rounded-3xl shadow-[0_80px_
                         className={`px-4 py-4 rounded-xl max-w-[85%] font-bold
                      ${
                        msg.role === "user"
-                         ? "bg-blue-600 text-white rounded-br-none"
+                         ? "bg-[var(--grms-blue)] text-white rounded-br-none"
                          : "bg-white text-slate-800 rounded-tl-none"
                      }`}
                       >
