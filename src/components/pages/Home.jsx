@@ -78,7 +78,7 @@ function Home() {
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.85] tracking-[ -0.05em] mb-10 text-slate-900 drop-shadow-sm">
               BUILDING <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--grms-blue)] to-indigo-600">
-                THE NEXUS.
+                THE NEXUS
               </span>
             </h1>
           </motion.div>

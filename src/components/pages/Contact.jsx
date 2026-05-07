@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // Animation Variants
 const fadeInUp = {
@@ -50,11 +51,12 @@ function Contact() {
   /* ---------- SERVICE FOCUS ---------- */
   const [serviceFocusList, setServiceFocusList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const api = import.meta.env.VITE_API_BASE_URL;
 
   /* ---------- GET SERVICE FOCUS ---------- */
   useEffect(() => {
     axios
-      .get("https://nexus1-dev.gdinexus.com:8410/api/Contacts/service-focus")
+      .get(`${api}/Contacts/service-focus`)
       .then((res) => setServiceFocusList(res.data))
       .catch((err) => console.error("Service Focus fetch failed:", err));
   }, []);
@@ -71,7 +73,7 @@ function Contact() {
 
     try {
       await axios.post(
-        "https://nexus1-dev.gdinexus.com:8410/api/Contacts/create-contact",
+        `${api}/Contacts/create-contact`,
         formData,
         {
           headers: { "Content-Type": "application/json" }
@@ -79,7 +81,7 @@ function Contact() {
       );
 
       console.log("Contact form submitted:", formData);
-      alert("Transmission Received. Our Nexus team will contact you shortly.");
+      toast.success("Transmission Received. Our Nexus team will contact you shortly.");
 
       // Reset
       setFormData({

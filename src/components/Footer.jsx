@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaLinkedinIn,
@@ -12,10 +12,49 @@ import {
   FaPhone
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import gdiLogo from "../assets/gdi_logo1.png";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribedAt, setSubscribedAt] = useState("");
+  const api = import.meta.env.VITE_API_BASE_URL
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      toast.error("Email is required");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${api}/Contacts/subscribe`,
+        {
+          email: email,
+          subscribedAt: subscribedAt || new Date().toISOString()
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      console.log("Toast triggered");
+      toast.success("Subscribed successfully!");
+      setEmail("");
+      setSubscribedAt("");
+    } catch (error) {
+      console.error("Error submitting newsletter form:", error);
+      toast.error("Subscription failed");
+    }
   };
 
   return (
@@ -73,11 +112,7 @@ function Footer() {
           {/* Column 1: Brand Identity */}
           <div className="lg:col-span-4 space-y-6">
             {/* Logo */}
-            <img
-              src="https://gdinexus.com/wp-content/uploads/2024/04/logo.png"
-              alt="GDI Nexus"
-              className="h-12 w-auto brightness-0 invert"
-            />
+            <img src={gdiLogo} alt="GDI Nexus" className="h-16 md:h-14" />
 
             {/* Description */}
             <p className="text-white text-sm leading-relaxed max-w-sm opacity-90">
@@ -114,21 +149,21 @@ function Footer() {
                 alt="SBA SDVOSB Certified"
                 className="h-25 w-auto"
               />
-               <div className="text-white/80 text-xs leading-relaxed space-y-1">
-              <p>
-                <strong className="text-white">UEI:</strong> J5QSUA5GP9M5
-              </p>
-              <p>
-                <strong className="text-white">D-U-N-S:</strong> 119194692
-              </p>
-              <p>
-                <strong className="text-white">CAGE:</strong> 9SXZ4
-              </p>
-              <p>
-                <strong className="text-white">NAIC:</strong> 541511, 541512,
-                541413, 61420, 513210
-              </p>
-            </div>
+              <div className="text-white/80 text-xs leading-relaxed space-y-1">
+                <p>
+                  <strong className="text-white">UEI:</strong> J5QSUA5GP9M5
+                </p>
+                <p>
+                  <strong className="text-white">D-U-N-S:</strong> 119194692
+                </p>
+                <p>
+                  <strong className="text-white">CAGE:</strong> 9SXZ4
+                </p>
+                <p>
+                  <strong className="text-white">NAIC:</strong> 541511, 541512,
+                  541413, 61420, 513210
+                </p>
+              </div>
             </div>
           </div>
 
@@ -231,16 +266,29 @@ function Footer() {
               <p className="text-white/80 text-xs mb-6">
                 Get the latest AI insights delivered to your inbox.
               </p>
-              <div className="flex flex-col gap-2">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                 <input
                   type="email"
                   placeholder="Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
                 />
-                <button className="bg-white text-[var(--grms-blue)] font-black py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all flex items-center justify-center gap-2">
-                  SUBSCRIBE <FaArrowRight size={10} />
+
+                <input
+                  type="date"
+                  value={subscribedAt}
+                  onChange={(e) => setSubscribedAt(e.target.value)}
+                  className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
+                />
+
+                <button
+                  type="submit"
+                  className="bg-white text-[var(--grms-blue)] font-black py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+                >
+                  SUBSCRIBE
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>

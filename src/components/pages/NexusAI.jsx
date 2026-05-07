@@ -14,7 +14,8 @@ import {
   FaCogs,
   FaDumbbell,
   FaUtensils,
-  FaAward
+  FaAward,
+  FaUserMd
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
@@ -152,6 +153,24 @@ const operationalProducts = [
     price: "Process-based Pricing",
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Hospital Management System",
+    category: "operations",
+    oneLiner: "Smart Healthcare Suite",
+    description:
+      "End-to-end hospital management system for handling patients, appointments, prescriptions, and billing with real-time insights.",
+    icon: <FaUserMd />,
+    features: [
+      "Patient Records",
+      "Appointment Scheduling",
+      "E-Prescriptions",
+      "Billing & Invoicing",
+      "Doctor Dashboard"
+    ],
+    price: "Hospital-based Licensing",
+    image:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -404,7 +423,9 @@ const NexusAI = () => {
     "show all",
     "all products",
     "everything",
-    "complete list"
+    "complete list",
+    "hospital",
+    "healthcare"
   ];
 
   // Enhanced product search function

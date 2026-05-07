@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import gdiLogo from "../assets/gdi_logo1.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
     // { name: "Team", href: "/team" },
     { name: "Services", href: "/services" },
     { name: "Products", href: "/products" },
-    { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "/blog" }
   ];
 
   // Lock body scroll when mobile menu is open
@@ -28,16 +29,15 @@ const Header = () => {
       <div className="max-w-7xl mx-auto">
         {/* Glass Header */}
         <div className="relative flex items-center justify-between px-6 py-3 bg-[var(--grms-blue)] border border-white/20 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden">
-
           {/* Glow */}
           <div className="absolute -left-10 top-0 w-40 h-full bg-white/10 skew-x-[20deg] blur-2xl pointer-events-none" />
 
           {/* Logo */}
           <a href="/" className="relative z-10">
             <img
-              src="https://gdinexus.com/wp-content/uploads/2024/04/logo.png"
+              src={gdiLogo}
               alt="GDI Nexus"
-              className="h-10 md:h-12 brightness-0 invert"
+              className="h-16 md:h-14 w-auto object-contain"
             />
           </a>
 

@@ -1,5 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
@@ -15,10 +19,13 @@ import Privacy from "./components/pages/Privacy";
 import ScrollToTop from "./components/ScrollToTop";
 import NexusAI from "./components/pages/NexusAI";
 import BackToTop from "./components/pages/BackToTop";
+import PageTracker from "./components/PageTracker";
 
 function App() {
   return (
     <Router>
+      <PageTracker />
+
       <Header />
       <BackToTop />
       <NexusAI />
@@ -36,6 +43,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
       </Routes>
       <Footer />
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 }

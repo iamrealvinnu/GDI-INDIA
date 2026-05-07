@@ -21,12 +21,14 @@ import {
   FaGlobe,
   FaAward,
   FaUtensils,
-  FaDumbbell
+  FaDumbbell,
+  FaUserMd
 } from "react-icons/fa";
 import EmpireStarImg from "../../assets/EmpireStar.png";
 import BensStaminaImg from "../../assets/BensStaminaFactory.jpg";
 import GDI_Nexus_Logo from "../../assets/grms_logo.png";
 import AxxendLogo from "../../assets/axxend_corp_logo.jpeg";
+import HospitalLogo from "../../assets/SaiNivasFoundation.jpeg";
 import { Link } from "react-router-dom";
 
 const fadeInUp = {
@@ -39,6 +41,7 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
+// New Operational Excellence Products
 // New Operational Excellence Products
 const operationalProducts = [
   {
@@ -143,7 +146,7 @@ const operationalProducts = [
     category: "operations",
     oneLiner: "Empire Menu Zone",
     description:
-      "Hotel suite designed for simplifying and sreamling hotel operations.",
+      "Hotel suite designed for simplifying and streamlining hotel operations.",
     icon: <FaUtensils />,
     features: [
       "Table Booking",
@@ -153,7 +156,7 @@ const operationalProducts = [
     ],
     price: "Outlet-based Licensing",
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" // buffet / dishes
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Relationship Management System",
@@ -171,6 +174,25 @@ const operationalProducts = [
     price: "Process-based Pricing",
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
+  },
+  // ✅ ADD THE HOSPITAL MANAGEMENT SYSTEM HERE:
+  {
+    name: "Hospital Management System",
+    category: "operations",
+    oneLiner: "Smart Healthcare Suite",
+    description:
+      "End-to-end hospital management system for handling patients, appointments, prescriptions, and billing with real-time insights.",
+    icon: <FaUserMd />, // Make sure FaUserMd is imported at the top!
+    features: [
+      "Patient Records",
+      "Appointment Scheduling",
+      "E-Prescriptions",
+      "Billing & Invoicing",
+      "Doctor Dashboard"
+    ],
+    price: "Hospital-based Licensing",
+    image:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -238,7 +260,10 @@ const clients = [
     name: "Axxend",
     logo: AxxendLogo
   },
-  
+  {
+    name: "Sai Nivas Foundation",
+    logo: HospitalLogo
+  }
 ];
 
 function Products() {
@@ -294,8 +319,10 @@ function Products() {
             >
               <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
               <span className="text-sm font-black text-slate-700 uppercase tracking-widest">
-                <span className="text-[var(--grms-blue)]">9</span> Specialized
-                Products Active
+                <span className="text-[var(--grms-blue)]">
+                  {allProducts.length}
+                </span>{" "}
+                Specialized Products Active
               </span>
             </motion.div>
           </motion.div>
