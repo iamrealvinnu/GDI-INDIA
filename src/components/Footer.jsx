@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 
 function Footer() {
   const [email, setEmail] = useState("");
-  const [subscribedAt, setSubscribedAt] = useState("");
+  // const [subscribedAt, setSubscribedAt] = useState("");
   const api = import.meta.env.VITE_API_BASE_URL
 
   const scrollToTop = () => {
@@ -38,7 +38,7 @@ function Footer() {
         `${api}/Contacts/subscribe`,
         {
           email: email,
-          subscribedAt: subscribedAt || new Date().toISOString()
+          // subscribedAt: subscribedAt || new Date().toISOString()
         },
         {
           headers: {
@@ -50,7 +50,7 @@ function Footer() {
       console.log("Toast triggered");
       toast.success("Subscribed successfully!");
       setEmail("");
-      setSubscribedAt("");
+      // setSubscribedAt("");
     } catch (error) {
       console.error("Error submitting newsletter form:", error);
       toast.error("Subscription failed");
@@ -210,7 +210,7 @@ function Footer() {
               </li>
 
               {/* Second Address */}
-              <li>
+              {/* <li>
                 <p className="text-white font-bold mb-1">Office – India</p>
                 <div className="flex gap-4 items-start">
                   <FaMapMarkerAlt className="text-white mt-1" />
@@ -223,7 +223,7 @@ function Footer() {
                     Tamil Nadu, India – 643001
                   </span>
                 </div>
-              </li>
+              </li> */}
 
               {/* Email */}
               <li className="flex gap-4 items-center pt-2">
@@ -240,12 +240,12 @@ function Footer() {
               <li className="flex gap-4 items-start pt-2">
                 <FaPhone className="text-white mt-1" />
                 <div className="flex flex-col gap-1">
-                  <a
+                  {/* <a
                     href="tel:+918056584718"
                     className="text-white hover:underline underline-offset-4 transition-all"
                   >
                     +91 80565 84718
-                  </a>
+                  </a> */}
                   <a
                     href="tel:+17039879955"
                     className="text-white hover:underline underline-offset-4 transition-all"
@@ -275,12 +275,12 @@ function Footer() {
                   className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
                 />
 
-                <input
+                {/* <input
                   type="date"
                   value={subscribedAt}
                   onChange={(e) => setSubscribedAt(e.target.value)}
                   className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
-                />
+                /> */}
 
                 <button
                   type="submit"

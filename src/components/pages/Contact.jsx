@@ -256,13 +256,13 @@ function Contact() {
                 <ContactCard
                   icon={<FaPhone />}
                   title="Secure Line"
-                  detail="+918056584718 ||  +1(703)987-9955"
+                  detail=" +1(703)987-9955"
                 />
-                <ContactCard
+                {/* <ContactCard
                   icon={<FaMapMarkerAlt />}
                   title="HQ Terminal"
                   detail="33, Thoppan Line, Fingerpost Kandal,Udagamandalam, Nilgiris, Tamil Nadu, India – 643001"
-                />
+                /> */}
               </div>
             </motion.div>
 

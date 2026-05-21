@@ -175,7 +175,7 @@ const operationalProducts = [
 ];
 
 // 🔹 API ENDPOINT
-const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/Chat`;
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/Chat`;
 
 // Product Card Component for Chat - FIXED: Handle icon rendering properly
 const ProductCardChat = ({ product, onSelect }) => {
@@ -228,7 +228,7 @@ const ProductCardChat = ({ product, onSelect }) => {
   );
 };
 
-// Product Details Modal for Chat
+// Product Details Modal for Chat - WITH CLOSE BUTTON
 const ProductDetailsModal = ({ product, onClose, onBack }) => {
   return (
     <motion.div
@@ -253,6 +253,15 @@ const ProductDetailsModal = ({ product, onClose, onBack }) => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+          {/* Close button - Added here */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 hover:text-black transition-colors z-10"
+            aria-label="Close"
+          >
+            <FaTimes size={18} />
+          </button>
 
           <div className="absolute bottom-6 left-6 right-6">
             <div className="flex items-center justify-between">
