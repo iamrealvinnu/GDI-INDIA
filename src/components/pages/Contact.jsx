@@ -218,7 +218,7 @@ function Contact() {
                       className="w-full px-8 py-5 bg-warm-white border border-slate-100 rounded-[2rem] focus:border-primary focus:ring-8 focus:ring-primary/5 outline-none transition-all font-bold text-charcoal appearance-none cursor-pointer"
                     >
                       <option value="" disabled>Select a service focus</option>
-                      {serviceFocusList.map((item) => (
+                      {Array.isArray(serviceFocusList) && serviceFocusList.map((item) => (
                         <option key={item.id} value={item.id}>{item.name}</option>
                       ))}
                     </select>
