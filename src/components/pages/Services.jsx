@@ -1,193 +1,186 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { 
   FaBrain, FaChartBar, FaCode, FaCloud, 
-  FaPaintBrush, FaBuilding, FaArrowRight, FaCheckCircle, FaMicrosoft 
+  FaPaintBrush, FaBuilding, FaArrowRight, FaCheckCircle, FaMicrosoft
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-};
-
-const serviceCapabilities = [
+const services = [
   {
     icon: <FaBrain />,
-    title: "AI & Agentic Systems",
-    oneLiner: "Engineering autonomous logic with deterministic reliability.",
-    description: "Moving beyond stochastic models to build agentic systems with built-in runtime governance and causal auditing for enterprise-grade safety.",
-    features: ["Agentic Orchestration", "Predictive Neural Modeling", "NLP & Local LLM Tuning", "Safety Guardrails"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(59,130,246,0.2)]"
+    title: "Smart AI Solutions",
+    description: "Intelligent systems that automate routine tasks and analyze complex data to drive faster, data-driven decisions.",
+    features: ["Intelligent Chatbots", "Predictive Analytics", "Process Automation"],
+    color: "bg-primary",
+    textColor: "text-white",
+    iconColor: "text-secondary"
   },
   {
     icon: <FaChartBar />,
-    title: "Data Liquidity",
-    oneLiner: "Converting raw data into a high-velocity strategic asset.",
-    description: "End-to-end data engineering that ensures your information is structured, accessible, and ready for high-fidelity predictive analytics.",
-    features: ["Real-time Analytics", "Data Warehousing", "Business Intelligence", "ETL Pipelines"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(99,102,241,0.2)]"
+    title: "Data & Insights",
+    description: "Transform raw data into a strategic asset with real-time visibility into your business performance.",
+    features: ["Data Warehousing", "Visual Dashboards", "Big Data Strategy"],
+    color: "bg-white",
+    textColor: "text-charcoal",
+    iconColor: "text-primary"
   },
   {
     icon: <FaCode />,
-    title: "Full-Stack Engineering",
-    oneLiner: "Developing resilient, cross-platform software ecosystems.",
-    description: "Building production-grade applications across iOS, Android, and Web that maintain structural integrity at scale.",
-    features: ["Enterprise Systems", "Scalable Backends", "Mobile & Web Apps", "API Orchestration"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(30,58,138,0.15)]"
+    title: "Custom Software",
+    description: "Robust, secure, and scalable software solutions tailored precisely to your enterprise requirements.",
+    features: ["Web & Mobile Apps", "API Development", "System Integration"],
+    color: "bg-white",
+    textColor: "text-charcoal",
+    iconColor: "text-primary"
   },
   {
     icon: <FaCloud />,
-    title: "Azure Cloud Infrastructure",
-    oneLiner: "Elastic, secure, and invisible infrastructure deployment.",
-    description: "Certified Microsoft cloud solutions designed to migrate and optimize your most critical workloads with zero-latency scaling.",
-    features: ["Azure Migration", "Serverless Computing", "Cloud Governance", "DevOps Pipelines"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(59,130,246,0.2)]"
+    title: "Cloud & DevOps",
+    description: "Secure cloud modernization specialized in Microsoft Azure for 99.9% uptime and global scale.",
+    features: ["Cloud Migration", "Managed Services", "Azure Infrastructure"],
+    color: "bg-secondary",
+    textColor: "text-white",
+    iconColor: "text-accent"
   },
   {
     icon: <FaPaintBrush />,
-    title: "Aesthetic UX Design",
-    oneLiner: "The intersection of fluid design and functional logic.",
-    description: "Crafting modern, high-performance user interfaces that prioritize engagement and seamless human-machine interaction.",
-    features: ["UI/UX Architecture", "Performance Optimization", "E-commerce Flows", "Fluid Interactions"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(79,70,229,0.2)]"
+    title: "UI/UX & Design",
+    description: "Digital experiences that combine aesthetic beauty with functional simplicity for maximum engagement.",
+    features: ["User Research", "Interface Design", "Prototyping"],
+    color: "bg-white",
+    textColor: "text-charcoal",
+    iconColor: "text-primary"
   },
   {
     icon: <FaBuilding />,
-    title: "Enterprise Architecture",
-    oneLiner: "Aligning technical foundations with business destiny.",
-    description: "Strategic planning that bridges the gap between legacy bottlenecks and modern, agile digital transformation.",
-    features: ["IT Strategy", "Digital Governance", "System Integration", "Audit Protocols"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(15,23,42,0.15)]"
+    title: "IT Consulting",
+    description: "Strategic technology planning to align your infrastructure with your long-term business goals.",
+    features: ["Digital Strategy", "IT Audits", "Resource Planning"],
+    color: "bg-white",
+    textColor: "text-charcoal",
+    iconColor: "text-primary"
   }
 ];
 
+const ServiceCard = ({ service, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1, duration: 0.8 }}
+    viewport={{ once: true, margin: "-50px" }}
+    className={`p-12 rounded-[3.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all flex flex-col group relative overflow-hidden ${service.color} ${service.textColor}`}
+  >
+    <div className={`text-5xl mb-10 group-hover:scale-110 transition-transform duration-500 ${service.iconColor}`}>
+      {service.icon}
+    </div>
+    <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter leading-none">{service.title}</h3>
+    <p className={`text-lg mb-10 leading-relaxed font-medium ${service.textColor === 'text-white' ? 'opacity-70' : 'text-slate-500'}`}>
+      {service.description}
+    </p>
+    <div className="mt-auto">
+      <ul className="space-y-4">
+        {service.features.map((feature, i) => (
+          <li key={i} className="flex items-center gap-4 text-sm font-black uppercase tracking-widest">
+            <FaCheckCircle className={service.iconColor} />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </motion.div>
+);
+
 function Services() {
   return (
-    <main className="bg-gradient-to-b from-slate-50 via-white to-slate-100 min-h-screen text-slate-900 overflow-hidden">
+    <main className="bg-warm-white min-h-screen text-charcoal font-sans overflow-hidden">
       
-      {/* --- HERO SECTION --- */}
-      <section className="relative pt-40 pb-20 px-6">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[var(--grms-blue)]/5 blur-[120px] -mr-40 pointer-events-none" />
+      {/* 1. HERO SECTION: IMMERSIVE */}
+      <section className="relative pt-40 pb-32 px-6 bg-white overflow-hidden text-center">
+        <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-primary/5 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
         
-        <div className="container mx-auto relative z-10 text-center lg:text-left">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <span className="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-100 bg-white/60 backdrop-blur-md text-[var(--grms-blue)] text-[10px] font-black tracking-[.4em] uppercase">
-              The Nexus Capability Index
-            </span>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none mb-10 uppercase italic">
-              ENGINEERING <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--grms-blue)] to-indigo-600">CAPABILITIES.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed italic">
-              "Building software that works in the real world, not just in notebooks."
-            </p>
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/5 text-primary rounded-full text-xs font-black uppercase tracking-[0.3em] mb-12 border border-primary/10"
+          >
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            Engineering Excellence
           </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-huge font-black mb-12"
+          >
+            Our Technical <br />
+            <span className="text-primary italic">Capabilities.</span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-2xl md:text-3xl text-slate-500 max-w-4xl mx-auto font-medium leading-relaxed"
+          >
+            We deliver world-class software solutions with a focus on quality, security, and measurable business impact.
+          </motion.p>
         </div>
       </section>
 
-      {/* --- SERVICES GRID --- */}
-      <section className="py-24 px-6 relative">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {serviceCapabilities.map((service, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 50 },
-                  visible: { opacity: 1, y: 0, transition: { delay: index * 0.1 } }
-                }}
-                className="group relative h-full"
-              >
-                <div className={`relative bg-white border border-slate-100 rounded-[3rem] p-10 h-full transition-all duration-500 transform group-hover:-translate-y-4 shadow-[0_20px_60px_rgba(0,0,0,0.06)] ${service.glow}`}>
-                  <div className="text-4xl text-[var(--grms-blue)] mb-8 bg-slate-50 w-20 h-20 rounded-3xl flex items-center justify-center group-hover:bg-[var(--grms-blue)] group-hover:text-white transition-all duration-500">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-2xl font-black text-slate-950 mb-2 tracking-tighter uppercase italic leading-none">{service.title}</h3>
-                  <p className="text-[var(--grms-blue)] font-black text-[9px] uppercase tracking-widest mb-6">{service.oneLiner}</p>
-                  <p className="text-slate-500 font-medium leading-relaxed mb-8 text-sm">{service.description}</p>
-                  
-                  <div className="pt-8 border-t border-slate-50 bg-slate-50/50 -mx-10 px-10 rounded-b-[3rem]">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 italic">Technical Focus</h4>
-                    <ul className="space-y-4 pb-4">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-xs font-bold text-slate-800">
-                          <FaCheckCircle className="text-[var(--grms-blue)] text-[10px]" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
+      {/* 2. SERVICES GRID: BOLD & LARGE */}
+      <section className="py-40 px-6">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {services.map((service, index) => (
+              <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- MICROSOFT PARTNERSHIP: THE OBSIDIAN HUB (FIXED TEXT VISIBILITY) --- */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto">
-          <div className="bg-[var(--grms-blue)] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl border border-white/5">
-            <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: `radial-gradient(var(--grms-blue) 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+      {/* 3. PARTNERSHIP CTA: IMMERSIVE */}
+      <section className="py-40 px-6 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="bg-secondary rounded-[4rem] p-16 md:p-32 text-center text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
             
-            <div className="relative z-10 max-w-5xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" 
-                  alt="Microsoft Logo" 
-                  className="h-10 w-auto"
-                />
-                <div className="hidden md:block h-12 w-px bg-white/20" />
-                <div className="text-center md:text-left">
-                  <p className="text-white font-black text-[10px] uppercase tracking-[0.4em] leading-none mb-2 italic opacity-80">Official Solutions Partner</p>
-                  <h2 className="text-white text-3xl md:text-4xl font-black tracking-tighter uppercase italic">Microsoft Cloud Excellence</h2>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <div className="inline-flex items-center gap-6 mb-12 p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm">
+                 <FaMicrosoft className="text-5xl text-blue-500" />
+                 <div className="text-left">
+                   <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] leading-none mb-2">Global Solutions Partner</p>
+                   <p className="text-xl font-bold text-white tracking-tight">Microsoft Cloud Expertise</p>
+                 </div>
               </div>
-
-              <p className="text-slate-400 text-xl font-medium text-center leading-relaxed mb-16 max-w-3xl mx-auto">
-                As a certified partner, we deliver enterprise-grade Azure infrastructure, ensuring your 
-                data and AI workflows are built on the world's most <span className="text-white font-bold">secure and scalable foundation.</span>
+              
+              <h2 className="text-mega font-black mb-12 uppercase tracking-tighter">
+                Ready to transform <br /><span className="text-accent italic">Your Business?</span>
+              </h2>
+              <p className="text-2xl text-blue-100/70 mb-16 max-w-2xl mx-auto font-medium leading-relaxed">
+                Whether you're a startup or a global enterprise, we have the expertise to help you scale your technical core.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <HighlightBox title="Azure Expertise" detail="Specialized in cloud-native AI deployment." />
-                <HighlightBox title="Security First" detail="ISO-aligned cloud governance protocols." />
-                <HighlightBox title="Cost Control" detail="Optimized resource orchestration and ROI." />
-              </div>
-            </div>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center gap-4 px-16 py-8 bg-white text-secondary rounded-[2.5rem] font-black text-xl tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl shadow-white/10"
+              >
+                GET A PROPOSAL
+                <FaArrowRight size={24} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* --- CTA SECTION --- */}
-      <section className="py-40 text-center px-6">
-        <h2 className="text-5xl md:text-8xl font-black text-slate-950 tracking-tighter italic uppercase mb-12 leading-none">
-          INITIATE <br/> <span className="text-[var(--grms-blue)]">TRANSFORMATION.</span>
-        </h2>
-        <a href="/contact" className="group relative inline-flex items-center gap-4 bg-slate-950 text-white px-14 py-7 rounded-full font-black text-lg transition-all shadow-2xl hover:-translate-y-2 hover:bg-[var(--grms-blue)]">
-          CUSTOM SOLUTION INQUIRY <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-        </a>
-      </section>
     </main>
-  );
-}
-
-// Fixed HighlightBox Sub-component: Text stays White/Slate on hover for visibility
-function HighlightBox({ title, detail }) {
-  return (
-    <div className="p-8 border border-white/10 rounded-3xl bg-white/[0.02] backdrop-blur-xl transition-all duration-300 hover:border-[var(--grms-blue)]/50 hover:bg-white/[0.05] text-center group">
-      {/* Title stays white even on hover */}
-      <h4 className="text-white font-black text-sm uppercase tracking-widest mb-3 transition-colors">
-        {title}
-      </h4>
-      {/* Detail stays visible slate on hover */}
-      <p className="text-slate-400 text-xs font-medium leading-relaxed group-hover:text-slate-300 transition-colors">
-        {detail}
-      </p>
-    </div>
   );
 }
 

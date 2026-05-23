@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaLinkedinIn,
-  FaTwitter,
   FaInstagram,
   FaFacebookF,
-  FaArrowRight,
   FaEnvelope,
   FaMapMarkerAlt,
   FaArrowUp,
-  FaPhone
+  FaPhone,
+  FaPaperPlane,
+  FaGlobe
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import gdiLogo from "../assets/gdi_logo1.png";
@@ -18,8 +18,7 @@ import { toast } from "react-toastify";
 
 function Footer() {
   const [email, setEmail] = useState("");
-  // const [subscribedAt, setSubscribedAt] = useState("");
-  const api = import.meta.env.VITE_API_BASE_URL
+  const api = import.meta.env.VITE_API_BASE_URL;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,302 +26,167 @@ function Footer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email) {
       toast.error("Email is required");
       return;
     }
 
     try {
-      const response = await axios.post(
-        `${api}/Contacts/subscribe`,
-        {
-          email: email,
-          // subscribedAt: subscribedAt || new Date().toISOString()
-        },
-        {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-
-      console.log("Toast triggered");
+      await axios.post(`${api}/Contacts/subscribe`, { email: email }, {
+        headers: { "Content-Type": "application/json" }
+      });
       toast.success("Subscribed successfully!");
       setEmail("");
-      // setSubscribedAt("");
     } catch (error) {
-      console.error("Error submitting newsletter form:", error);
+      console.error("Newsletter error:", error);
       toast.error("Subscription failed");
     }
   };
 
   return (
-    <footer className="relative bg-[var(--grms-blue)] text-white pt-15 pb-10 overflow-hidden border-t border-white/10">
-      {/* Background Accent: Tech Grid Overlay - Unchanged */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)`,
-          backgroundSize: "40px 40px"
-        }}
-      />
+    <footer className="relative bg-secondary text-white pt-32 pb-12 overflow-hidden border-t border-white/5">
+      {/* Background Accent: Immersive Gradient */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-primary/20 rounded-full blur-[120px] -mr-32 -mt-32" />
+        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-accent/10 rounded-full blur-[100px] -ml-20 -mb-20" />
+      </div>
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        {/* Top Tier: The Vision Statement - Changed to all White */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-16 gap-8">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight text-white">
-              ENGINEERING THE <br />
-              <span className="text-white">NEXT DIGITAL FRONTIER.</span>
+      <div className="container mx-auto px-8 relative z-10 max-w-7xl">
+        {/* Top Tier: Branding & Statement */}
+        <div className="grid lg:grid-cols-12 gap-20 mb-32 items-start">
+          <div className="lg:col-span-7">
+            <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none text-white mb-10 uppercase">
+              Building for <span className="text-primary italic">India.</span> <br />
+              Scaling for <span className="text-accent italic">The World.</span>
             </h2>
-          </div>
-
-          {/* Microsoft Official Solutions Partner Badge - Unchanged */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-transform hover:scale-105">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-                alt="Microsoft Logo"
-                className="h-6 w-auto"
-              />
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-gray-900 leading-tight">
-                  Cloud Service Partner
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-transform hover:scale-105">
-              <img
-                src="https://desk.zoho.in/galleryDocuments/edbsn1910110579ddeb48235985ca9a94c461e52e225ea6ed31a0d3940e45fcc1f0b6d3fa4ae8cfdb869130da2349c97ba2366af436d1eb7e49ad924de3d605260df4?inline=true"
-                alt="ISO Logo"
-                className="h-6 w-auto"
-              />
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-gray-900 leading-tight">
-                  ISO 27001:2022
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Grid Tier */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-white/5">
-          {/* Column 1: Brand Identity */}
-          <div className="lg:col-span-4 space-y-6">
-            {/* Logo */}
-            <img src={gdiLogo} alt="GDI Nexus" className="h-16 md:h-14" />
-
-            {/* Description */}
-            <p className="text-white text-sm leading-relaxed max-w-sm opacity-90">
-              Transforming complex data into actionable intelligence. GDI Nexus
-              delivers elite-level AI solutions for global enterprises.
+            <p className="text-blue-100/60 text-xl font-medium leading-relaxed max-w-2xl">
+              We engineer world-class technical cores rooted in trust and designed for absolute exponential growth. Join us in architecting the future.
             </p>
-
-            {/* Social Icons */}
-            <div className="flex gap-4">
-              <a
-                href="https://www.linkedin.com/in/gdi-nexus-b44196308/"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--grms-blue)] hover:border-[var(--grms-blue)] transition-all"
-              >
-                <FaLinkedinIn className="text-white" />
-              </a>
-              <a
-                href="https://www.instagram.com/gdi_nexus?igsh=MTF4dXl6MjRrendwMg%3D%3D"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-pink-700 hover:border-[var(--grms-blue)] transition-all"
-              >
-                <FaInstagram className="text-white" />
-              </a>
-              <a
-                href="https://www.facebook.com/people/Gdi-Nexus/pfbid0ze6CfTdKQU8fsiW2KkevyF9o7Y1SGATYKTmykkmTbWxYdFRWwN9sbpXpDYKbwvnEl/"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-indigo-700 hover:border-[var(--grms-blue)] transition-all"
-              >
-                <FaFacebookF className="text-white" />
-              </a>
-            </div>
-
-            {/* SBA Badge */}
-            <div className="flex gap-4 pt-4">
-              <img
-                src="https://vetsez.com/wp-content/uploads/2023/08/SBA-SDVOSB-Logo.png"
-                alt="SBA SDVOSB Certified"
-                className="h-25 w-auto"
-              />
-              <div className="text-white/80 text-xs leading-relaxed space-y-1">
-                <p>
-                  <strong className="text-white">UEI:</strong> J5QSUA5GP9M5
-                </p>
-                <p>
-                  <strong className="text-white">D-U-N-S:</strong> 119194692
-                </p>
-                <p>
-                  <strong className="text-white">CAGE:</strong> 9SXZ4
-                </p>
-                <p>
-                  <strong className="text-white">NAIC:</strong> 541511, 541512,
-                  541413, 61420, 513210
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* Column 2: Quick Navigation - Changed Header and Hover Accent to White */}
-          <div className="lg:col-span-2">
-            <h4 className="text-white font-black text-xs uppercase tracking-widest mb-6">
-              NAVIGATION
-            </h4>
-            <ul className="space-y-4">
-              {["Home", "About", "Products", "Services"].map((item) => (
-                <li key={item}>
-                  <Link
-                    to={`/${item.toLowerCase()}`}
-                    className="text-white hover:opacity-70 transition-all text-sm font-medium flex items-center gap-2 group"
-                  >
-                    <span className="w-0 h-[1.5px] bg-white group-hover:w-4 transition-all"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Contact Details */}
-          <div className="lg:col-span-3">
-            <h4 className="text-white font-black text-xs uppercase tracking-widest mb-6">
-              OUR LOCATIONS
-            </h4>
-
-            <ul className="space-y-4 text-sm">
-              {/* Headquarters */}
-              <li>
-                <p className="text-white font-bold mb-1">Headquarters – USA</p>
-                <div className="flex gap-4 items-start">
-                  <FaMapMarkerAlt className="text-white mt-1" />
-                  <span className="text-white leading-relaxed">
-                    15840 Eagle Feather Dr,
-                    <br />
-                    Woodbridge, VA 22191,
-                    <br />
-                    United States
-                  </span>
-                </div>
-              </li>
-
-              {/* Second Address */}
-              {/* <li>
-                <p className="text-white font-bold mb-1">Office – India</p>
-                <div className="flex gap-4 items-start">
-                  <FaMapMarkerAlt className="text-white mt-1" />
-
-                  <span className="text-white leading-relaxed">
-                    33, Thoppan Line, Fingerpost Kandal,
-                    <br />
-                    Udagamandalam, Nilgiris,
-                    <br />
-                    Tamil Nadu, India – 643001
-                  </span>
-                </div>
-              </li> */}
-
-              {/* Email */}
-              <li className="flex gap-4 items-center pt-2">
-                <FaEnvelope className="text-white" />
-                <a
-                  href="mailto:contactus@gdinexus.com"
-                  className="text-white hover:underline underline-offset-4 transition-all font-medium"
-                >
-                  contactus@gdinexus.com
-                </a>
-              </li>
-
-              {/* Phone Number */}
-              <li className="flex gap-4 items-start pt-2">
-                <FaPhone className="text-white mt-1" />
-                <div className="flex flex-col gap-1">
-                  {/* <a
-                    href="tel:+918056584718"
-                    className="text-white hover:underline underline-offset-4 transition-all"
-                  >
-                    +91 80565 84718
-                  </a> */}
-                  <a
-                    href="tel:+17039879955"
-                    className="text-white hover:underline underline-offset-4 transition-all"
-                  >
-                    +1 (703) 987-9955
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Newsletter / CTA Card - Kept blue for branding balance */}
-          <div className="lg:col-span-3">
-            <div className="bg-[var(--grms-blue)] p-6 rounded-2xl shadow-2xl hover:translate-y-[-5px] transition-transform duration-300">
-              <h4 className="text-white font-black text-lg mb-2 leading-tight">
-                Join the Revolution
-              </h4>
-              <p className="text-white/80 text-xs mb-6">
-                Get the latest AI insights delivered to your inbox.
-              </p>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          {/* Newsletter Card */}
+          <div className="lg:col-span-5 w-full">
+            <div className="bg-white/5 p-12 rounded-[4rem] border border-white/10 backdrop-blur-xl shadow-2xl">
+              <span className="text-[10px] font-black text-accent uppercase tracking-[0.4em] mb-4 block">Strategic Brief</span>
+              <h4 className="text-3xl font-black mb-4 uppercase tracking-tighter">Stay Informed.</h4>
+              <p className="text-blue-100/60 text-lg font-medium mb-10">Initialize subscription to receive strategic technical reports.</p>
+              <form onSubmit={handleSubmit} className="relative">
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="ENTER EMAIL ADDRESS..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-[2rem] px-8 py-6 text-sm font-black text-white placeholder:text-slate-500 focus:outline-none focus:border-accent transition-all pr-20 uppercase tracking-widest"
                 />
-
-                {/* <input
-                  type="date"
-                  value={subscribedAt}
-                  onChange={(e) => setSubscribedAt(e.target.value)}
-                  className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white transition-all"
-                /> */}
-
                 <button
                   type="submit"
-                  className="bg-white text-[var(--grms-blue)] font-black py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all flex items-center justify-center gap-2"
+                  className="absolute right-3 top-3 bottom-3 bg-white text-secondary w-14 rounded-2xl flex items-center justify-center hover:bg-accent hover:text-white transition-all shadow-xl"
                 >
-                  SUBSCRIBE
+                  <FaPaperPlane size={18} />
                 </button>
               </form>
             </div>
           </div>
         </div>
 
-        {/* Bottom Tier: Legal & Metadata */}
-        <div className="mt-5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-white/40 text-[10px] font-bold tracking-[0.2em] uppercase">
-            © {new Date().getFullYear()} GDI Nexus. All rights reserved.
+        {/* Middle Tier: Cleaner Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pb-20 border-b border-white/5 items-start text-left">
+          
+          {/* 1. Connect */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent leading-none">Connect</h4>
+            <div className="flex gap-4">
+              <a href="https://www.linkedin.com/in/gdi-nexus-b44196308/" className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xl hover:bg-primary hover:border-primary transition-all shadow-xl">
+                <FaLinkedinIn />
+              </a>
+              <a href="https://www.instagram.com/gdi_nexus?igsh=MTF4dXl6MjRrendwMg%3D%3D" className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xl hover:bg-primary hover:border-primary transition-all shadow-xl">
+                <FaInstagram />
+              </a>
+              <a href="https://www.facebook.com/people/Gdi-Nexus/pfbid0ze6CfTdKQU8fsiW2KkevyF9o7Y1SGATYKTmykkmTbWxYdFRWwN9sbpXpDYKbwvnEl/" className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xl hover:bg-primary hover:border-primary transition-all shadow-xl">
+                <FaFacebookF />
+              </a>
+            </div>
+          </div>
+
+          {/* 2. Headquarters */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent leading-none">Headquarters</h4>
+            <div className="space-y-6">
+              <div className="flex gap-6 items-start">
+                <FaMapMarkerAlt className="text-primary text-xl mt-1" />
+                <div>
+                  <span className="text-white text-lg font-black uppercase tracking-tighter leading-none block mb-2">
+                    Nilgiris, Tamil Nadu
+                  </span>
+                  <p className="text-[11px] font-black text-blue-100/40 uppercase tracking-widest leading-relaxed max-w-[240px]">
+                    33, Thoppan Line, Fingerpost Kandal, Udagamandalam, 643001
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-6 items-center">
+                <FaPhone className="text-primary text-xl" />
+                <a href="tel:+917483648727" className="text-white text-lg font-black transition-all">
+                  +91 7483648727
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Digital Nexus */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent leading-none">Digital Nexus</h4>
+            <div className="space-y-6">
+              <div className="flex gap-6 items-center">
+                <FaEnvelope className="text-primary text-xl mt-1" />
+                <a href="mailto:contactus@gdinexus.com" className="text-white text-lg font-black transition-all lowercase">
+                  contactus@gdinexus.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Registration Row: Enhanced Trust Markers */}
+        <div className="py-12 border-b border-white/5 bg-white/[0.02] rounded-[2rem] px-8">
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+            {[
+              { label: "GST", value: "33ABBFG6793J1Z3" },
+              { label: "TAN", value: "CMBG08053D" },
+              { label: "LLP NO", value: "ACI-9725" },
+              { label: "PAN", value: "ABBFG6793J" }
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <span className="text-[10px] font-black text-accent uppercase tracking-[0.2em] opacity-80">{item.label}</span>
+                <span className="text-[12px] font-bold text-white tracking-widest leading-none">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Tier: Enhanced Visibility */}
+        <div className="pt-16 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 mt-12">
+          <p className="text-blue-100/60 text-[11px] font-black uppercase tracking-[0.3em]">
+            © {new Date().getFullYear()} GDI Nexus Software Solutions. All Protocols Reserved.
           </p>
-          <div className="flex gap-10 text-[10px] font-bold uppercase tracking-widest">
-            <Link
-              to="/privacy"
-              className="text-white/40 hover:text-white transition-colors"
-            >
-              Privacy Policy
+          <div className="flex items-center gap-10">
+            <Link to="/privacy" className="text-blue-100/60 hover:text-accent text-[11px] font-black uppercase tracking-[0.3em] transition-colors">
+              Privacy Protocol
             </Link>
-            <Link
-              to="/terms"
-              className="text-white/40 hover:text-white transition-colors"
-            >
+            <div className="w-1 h-1 bg-white/10 rounded-full" />
+            <Link to="/terms" className="text-blue-100/60 hover:text-accent text-[11px] font-black uppercase tracking-[0.3em] transition-colors">
               Terms of Service
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Modern Fixed Scroll-to-Top */}
-      <motion.button
+      {/* Scroll to Top Button */}
+      <button
         onClick={scrollToTop}
-        whileHover={{ y: -5 }}
-        className="fixed bottom-10 right-10 bg-white text-[var(--grms-blue)] p-4 rounded-xl shadow-2xl z-50 hover:bg-[var(--grms-blue)] hover:text-white transition-all border border-white/10"
+        className="fixed bottom-10 right-10 w-20 h-20 bg-white text-secondary rounded-[2rem] shadow-2xl z-50 flex items-center justify-center hover:bg-accent hover:text-white transition-all border border-slate-100"
       >
-        <FaArrowUp />
-      </motion.button>
+        <FaArrowUp size={24} />
+      </button>
     </footer>
   );
 }

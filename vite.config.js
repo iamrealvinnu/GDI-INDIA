@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://nexus1-dev.gdinexus.com:8410",
+        target: "https://api.gdinexus.com",
         changeOrigin: true,
         secure: false
       }

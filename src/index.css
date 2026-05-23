@@ -1,5 +1,54 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #2563EB;
+  --color-secondary: #000052;
+  --color-accent: #60A5FA;
+  --color-charcoal: #1E293B;
+  --color-warm-white: #F8FAFC;
+}
+
 :root {
-  --grms-blue: #000052;  /* example: Tailwind's purple-800 */
+  --brand-blue: #2563EB;
+  --brand-dark-blue: #000052;
+  --brand-charcoal: #1E293B;
+  --brand-warm-white: #F8FAFC;
+  --glass-bg: rgba(248, 250, 252, 0.7);
+  --glass-border: rgba(37, 99, 235, 0.2);
+}
+
+@layer utilities {
+  .text-huge {
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  
+  .text-mega {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border border-teal-500/10 bg-white/70 shadow-xl;
+  }
+
+  .glass-card-dark {
+    @apply backdrop-blur-xl border border-white/10 bg-charcoal/90 shadow-2xl;
+  }
+
+  .refined-shadow {
+    box-shadow: 0 20px 50px -12px rgba(0, 128, 128, 0.1);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-warm-white text-charcoal antialiased selection:bg-primary selection:text-white;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }

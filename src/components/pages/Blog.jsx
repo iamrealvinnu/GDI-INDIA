@@ -2,317 +2,197 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaArrowRight,
-  FaPlay,
-  FaMicrochip,
   FaBrain,
-  FaTimes,
-  FaClock,
-  FaUserShield,
+  FaChevronLeft,
   FaShareAlt,
-  FaChevronLeft
+  FaCalendarAlt,
+  FaClock
 } from "react-icons/fa";
 
-// --- DATA SOURCE ---
+// --- DATA ---
 const blogData = [
   {
     id: "p-001",
     type: "featured",
     date: "OCT 24, 2025",
     readTime: "8 MIN READ",
-    tags: ["Agentic AI", "Enterprise Architecture"],
-    title:
-      "Beyond Stochastic Parrots: Engineering Deterministic AI Agents for FinTech.",
-    excerpt:
-      "We analyze the failure modes of generative models in high-stakes finance and outline our proprietary framework for ensuring causal reasoning in runtime environments.",
+    tags: ["Digital Transformation", "Business Strategy"],
+    title: "The Future of Enterprise Software: Scaling with Trust.",
+    excerpt: "In an era of rapid technological change, building resilient software systems requires more than just code—it requires a foundation of trust and engineering discipline.",
     content: `
-<h2>⚙️ The Determinism Gap in Enterprise AI</h2>
-<p>
-Large Language Models have normalized probabilistic reasoning.
-While effective for consumer use cases, this approach introduces
-unacceptable risk in regulated financial environments.
-</p>
-
-<p>
-When decisions impact capital, compliance, and customer trust,
-<strong>“mostly correct” becomes a failure condition</strong>.
-</p>
-
-<blockquote>
-Reliability is not a model feature — it is a system design choice.
-</blockquote>
-
-<hr/>
-
-<h2>🧠 From Generation to Governed Intelligence</h2>
-<p>
-At GDI Nexus, AI systems are treated as decision infrastructure —
-not creative engines. Intelligence must operate inside
-clearly defined constraints with predictable outcomes.
-</p>
-
-<h3>🛡️ The Causal Governor Layer</h3>
-<p>
-The Causal Governor enforces structured reasoning at runtime.
-Every response is mapped to a verified logical path,
-eliminating probabilistic shortcuts.
-</p>
-
-<ul>
-  <li>🔁 <strong>Deterministic Routing</strong><br/>
-  Inputs always trigger predefined execution paths.</li>
-
-  <li>🔍 <strong>Causal Auditing</strong><br/>
-  Each reasoning step is validated against trusted data.</li>
-
-  <li>🚧 <strong>Runtime Governance</strong><br/>
-  Active guardrails prevent hallucination and policy drift.</li>
-</ul>
-
-<p>
-The outcome is intelligence that is
-<strong>auditable, compliant, and production-ready</strong>.
-</p>
-`,
-
-    image:
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065&auto=format&fit=crop",
+      <h2>The Shift to Resilient Architecture</h2>
+      <p>Modern enterprises are no longer just looking for software; they are looking for resilience. As global markets become more volatile, the ability for a system to adapt without breaking is the ultimate competitive advantage.</p>
+      <p>At GDI Nexus, we approach every project with a "Security-First" and "Scale-Ready" mindset. We believe that technology should empower human ingenuity, not replace it.</p>
+      <blockquote>Integrity is not just a value; it's a design requirement.</blockquote>
+      <hr/>
+      <h2>Building for the Next Billion Users</h2>
+      <p>Scaling a system from one thousand to one billion users requires a fundamental shift in how we think about data and infrastructure. It's not just about adding more servers; it's about architecting for concurrency and global distribution.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
     author: "Vinay Gupta",
-    authorRole: "Principal AI Engineer"
+    authorRole: "Principal AI & Data Science Engineer"
   },
   {
     id: "p-002",
-    type: "video",
-    date: "OCT 18, 2025",
-    readTime: "12 MIN WATCH",
-    tags: ["Cloud Core", "Azure Migration"],
-    title:
-      "The Zero-Latency Enterprise—Migrating Legacy Monoliths to Elastic Cloud.",
-    excerpt:
-      "Watch Girish Girigowda's keynote on de-risking massive infrastructure shifts using the GDI Nexus phased migration protocol.",
+    type: "standard",
+    date: "JAN 12, 2026",
+    readTime: "5 MIN READ",
+    tags: ["AI & Innovation", "Data Science"],
+    title: "AI That Understands Your Business Context.",
+    excerpt: "Generic AI models are useful, but business-specific intelligence is revolutionary. Learn how custom-tuned models drive real ROI.",
     content: `
-<h2>☁️ Enterprises Are Living Systems</h2>
-<p>
-Cloud migration is often framed as an infrastructure upgrade.
-In reality, it represents a fundamental shift in how
-software is built, scaled, and operated.
-</p>
-
-<p>
-Modern enterprises demand elasticity across:
-</p>
-
-<ul>
-  <li>⚡ Compute and performance</li>
-  <li>🏗️ Architecture and design</li>
-  <li>💰 Cost models and efficiency</li>
-  <li>🚀 Operational velocity</li>
-</ul>
-
-<hr/>
-
-<h2>📐 The GDI Nexus Migration Model</h2>
-<p>
-This phased strategy minimizes risk while enabling
-continuous progress toward cloud-native systems.
-</p>
-
-<ol>
-  <li>
-    <strong>Decoupling</strong><br/>
-    🔗 Separate business logic from legacy constraints
-  </li>
-  <li>
-    <strong>Containerization</strong><br/>
-    📦 Enable independent scaling and deployment
-  </li>
-  <li>
-    <strong>Cloud-Native Orchestration</strong><br/>
-    ☁️ Reduce operational overhead using Azure services
-  </li>
-</ol>
-
-<p>
-The result is incremental migration with
-<strong>maximum stability and long-term resilience</strong>.
-</p>
-`,
-
-    videoThumbnail:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop",
-    author: "Girish Girigowda",
-    authorRole: "COO"
-  },
-  {
-    id: "p-003",
-    type: "featured",
-    date: "JAN 23, 2026",
-    readTime: "6 MIN READ",
-    tags: [
-      "Resilient Intelligence",
-      "Human + Machine",
-      "Digital Transformation"
-    ],
-    title: "The Rise of Resilient Intelligence in the Digital Age",
-    excerpt:
-      "In an era of constant disruption, resilient intelligence blends human judgment with machine scale to build systems that adapt, endure, and earn trust under pressure.",
-    content: `
-<h2>🌍 Navigating a World of Constant Change</h2>
-<p>
-Digital systems today operate in environments defined by volatility,
-uncertainty, and rapid transformation. Intelligence that works only
-under ideal conditions is no longer sufficient.
-</p>
-
-<p>
-Resilient intelligence is the capability to adapt without breaking —
-maintaining continuity even when conditions shift unexpectedly.
-</p>
-
-<!-- IMAGE 1 -->
-<div style="margin:56px 0;">
-  <img
-    src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000"
-    alt="Digital resilience and intelligence"
-    style="width:50%; border-radius:28px;"
-  />
-</div>
-
-<hr/>
-
-<h2>🛡️ Why Resilience Matters</h2>
-<p>
-Traditional intelligence systems optimize for performance under
-stable conditions. Resilient systems are designed to perform
-<strong>under pressure</strong>.
-</p>
-
-<ul>
-  <li>
-    🔐 <strong>Security First</strong><br/>
-    Ensures continuity even during failure or attack.
-  </li>
-  <li>
-    🔄 <strong>Adaptability</strong><br/>
-    Systems must pivot without collapsing.
-  </li>
-  <li>
-    🔍 <strong>Trust & Transparency</strong><br/>
-    Accountability is as critical as accuracy.
-  </li>
-</ul>
-
-<!-- IMAGE 2 -->
-<div style="margin:56px 0;">
-  <img
-    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2000"
-    alt="System reliability and security"
-    style="width:50%; border-radius:28px;"
-  />
-</div>
-
-<hr/>
-
-<blockquote>
-The future belongs to those who can balance innovation with responsibility,
-speed with safety, and intelligence with integrity.
-</blockquote>
-
-<hr/>
-
-<h2>🤝 The Human + Machine Equation</h2>
-<p>
-Resilient intelligence is not artificial intelligence alone.
-It is the fusion of complementary strengths — combining human judgment
-with machine-scale execution.
-</p>
-
-<ul>
-  <li>
-    🧠 <strong>Humans</strong><br/>
-    Empathy, ethics, judgment, and strategic vision.
-  </li>
-  <li>
-    ⚙️ <strong>Machines</strong><br/>
-    Scale, speed, consistency, and data-driven insight.
-  </li>
-</ul>
-
-<!-- IMAGE 3 -->
-<div style="margin:56px 0;">
-  <img
-    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2000"
-    alt="Human and machine collaboration"
-    style="width:50%; border-radius:28px;"
-  />
-</div>
-
-<p>
-When designed together, human and machine intelligence form systems
-that are not only powerful, but dependable — capable of navigating
-complexity without losing alignment or trust.
-</p>
-`
-,
-    image:
-      "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=2065&auto=format&fit=crop",
+      <h2>Moving Beyond Generic Models</h2>
+      <p>While general-purpose AI has captured the world's imagination, its utility in a corporate setting is often limited by a lack of context. A model that doesn't understand your industry's specific regulations, terminology, and customer needs can often do more harm than good.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
     author: "Nithya Joghee",
     authorRole: "Project Manager"
   },
   {
-    id: "p-004",
-    type: "featured",
-    date: "FEB 02, 2026",
-    readTime: "7 MIN READ",
-    tags: ["Machine Learning", "NLP", "ML.NET", ".NET Enterprise"],
-    title: "Intelligent Text Processing with ML.NET for Enterprise NLP",
-    excerpt:
-      "ML.NET enables enterprises to build secure, high-performance NLP systems directly within the .NET ecosystem—without external ML stacks.",
+    id: "p-003",
+    type: "standard",
+    date: "FEB 05, 2026",
+    readTime: "6 MIN READ",
+    tags: ["Cloud Security", "Enterprise IT"],
+    title: "Zero-Trust Architecture in the Modern Cloud.",
+    excerpt: "Protecting your digital assets requires a shift from perimeter security to a zero-trust model. Here is how we implement it.",
     content: `
-<h2>🧪 Enterprise NLP Without External Dependencies</h2>
-<p>
-ML.NET enables production-grade NLP systems entirely
-within the .NET ecosystem — eliminating external ML stacks
-while preserving control and security.
-</p>
-
-<blockquote>
-Enterprise intelligence thrives when aligned with engineering discipline.
-</blockquote>
-
-<hr/>
-
-<h2>🔧 Pipeline-Driven Intelligence</h2>
-<ul>
-  <li>📄 Raw text → structured features</li>
-  <li>🔢 Strong typing and reproducibility</li>
-  <li>🚀 Predictable behavior across environments</li>
-</ul>
-
-<h2>📚 Core NLP Capabilities</h2>
-<ul>
-  <li>✂️ <strong>Text Processing:</strong> Tokenization, normalization, n-grams</li>
-  <li>📐 <strong>Feature Engineering:</strong> TF-IDF, embeddings</li>
-  <li>🤖 <strong>Model Training:</strong> SDCA, FastTree, LightGBM</li>
-  <li>⚡ <strong>Deployment:</strong> Low-latency ASP.NET Core APIs</li>
-</ul>
-
-<h2>🧱 Why ML.NET Fits Enterprise NLP</h2>
-<ul>
-  <li>✅ Native .NET integration</li>
-  <li>✅ Secure data boundaries</li>
-  <li>✅ CI/CD-friendly lifecycle</li>
-  <li>✅ Production-ready governance</li>
-</ul>
-`,
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2065&auto=format&fit=crop",
-    author: "Shanjanaa Bharath",
-    authorRole: "Technical Lead"
+      <h2>The Death of the Perimeter</h2>
+      <p>In a world of remote work and cloud-native apps, the old idea of a "secure perimeter" is dead. Attackers are increasingly targeting identity rather than just firewalls.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+    author: "Girish Girigowda",
+    authorRole: "COO"
   }
 ];
 
-const Blog = () => {
+const BlogCard = ({ post, onRead }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    onClick={onRead}
+    className="group cursor-pointer bg-white rounded-[3.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all overflow-hidden flex flex-col h-full"
+  >
+    <div className="relative h-72 overflow-hidden bg-slate-50">
+      <img 
+        src={`${post.image}&w=800&q=70`} 
+        alt={post.title} 
+        loading="lazy"
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.5s]" 
+      />
+      <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+      <div className="absolute top-8 left-8 flex gap-2">
+        {post.tags.map((tag, i) => (
+          <span key={i} className="px-4 py-2 bg-white/90 backdrop-blur-md text-primary text-[10px] font-black uppercase tracking-[0.2em] rounded-full shadow-lg">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+    <div className="p-10 flex flex-col flex-grow">
+      <div className="flex items-center gap-6 mb-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+        <span className="flex items-center gap-2"><FaCalendarAlt /> {post.date}</span>
+        <span className="flex items-center gap-2"><FaClock /> {post.readTime}</span>
+      </div>
+      <h3 className="text-3xl font-black text-charcoal mb-6 uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">
+        {post.title}
+      </h3>
+      <p className="text-slate-500 text-lg leading-relaxed mb-10 line-clamp-3 font-medium">{post.excerpt}</p>
+      <div className="mt-auto pt-8 border-t border-slate-50 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary text-sm">
+            <FaBrain />
+          </div>
+          <div>
+            <p className="text-sm font-black text-charcoal uppercase tracking-tight">{post.author}</p>
+            <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">{post.authorRole}</p>
+          </div>
+        </div>
+        <div className="w-12 h-12 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+          <FaArrowRight size={14} />
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const ArticleModal = ({ post, onClose }) => (
+  <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }} 
+      onClick={onClose}
+      className="absolute inset-0 bg-secondary/95 backdrop-blur-xl"
+    />
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0, y: 50 }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
+      exit={{ scale: 0.9, opacity: 0, y: 50 }}
+      className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[4rem] shadow-2xl overflow-hidden flex flex-col"
+    >
+      <div className="absolute top-8 right-8 z-50">
+        <button onClick={onClose} className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-charcoal hover:bg-primary hover:text-white transition-all shadow-xl">
+          <FaChevronLeft className="rotate-180" size={20} />
+        </button>
+      </div>
+
+      <div className="overflow-y-auto p-12 md:p-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-6 mb-10 text-xs font-black text-primary uppercase tracking-[0.4em]">
+            <span>{post.date}</span>
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span>{post.readTime}</span>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-black text-charcoal mb-12 leading-none uppercase tracking-tighter">
+            {post.title}
+          </h1>
+          
+          <div className="flex items-center gap-6 mb-16 p-8 bg-warm-white rounded-[2.5rem] border border-slate-100">
+             <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+               <FaBrain />
+             </div>
+             <div>
+                <p className="font-black text-charcoal text-2xl uppercase tracking-tight">{post.author}</p>
+                <p className="text-xs text-slate-500 font-black uppercase tracking-[0.2em]">{post.authorRole}</p>
+             </div>
+             <button className="ml-auto w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-slate-400 hover:text-primary border border-slate-100 transition-all shadow-sm">
+                <FaShareAlt size={16} />
+             </button>
+          </div>
+
+          <div className="aspect-[21/9] rounded-[3rem] overflow-hidden mb-20 shadow-2xl bg-slate-50">
+            <img src={`${post.image}&w=1200&q=80`} alt={post.title} className="w-full h-full object-cover" />
+          </div>
+
+          <div className="prose-custom max-w-none">
+            <div
+              className="
+                [&_h2]:text-4xl [&_h2]:font-black [&_h2]:text-charcoal [&_h2]:mt-20 [&_h2]:mb-10 [&_h2]:uppercase [&_h2]:tracking-tighter
+                [&_h3]:text-3xl [&_h3]:font-black [&_h3]:text-charcoal [&_h3]:mt-12 [&_h3]:mb-8 [&_h3]:uppercase [&_h3]:tracking-tight
+                [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-relaxed [&_p]:mb-10 [&_p]:font-medium
+                [&_blockquote]:border-l-[12px] [&_blockquote]:border-primary [&_blockquote]:bg-primary/5 [&_blockquote]:p-12 [&_blockquote]:rounded-r-[3rem] [&_blockquote]:text-secondary [&_blockquote]:text-3xl [&_blockquote]:font-black [&_blockquote]:italic [&_blockquote]:my-16 [&_blockquote]:tracking-tight [&_blockquote]:leading-tight
+                [&_ul]:list-none [&_ul]:space-y-6 [&_ul]:mb-12
+                [&_li]:flex [&_li]:items-start [&_li]:gap-4 [&_li]:text-slate-600 [&_li]:text-xl [&_li]:font-medium
+                [&_li]:before:content-['→'] [&_li]:before:text-primary [&_li]:before:font-black
+                [&_hr]:border-slate-100 [&_hr]:my-20
+              "
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+);
+
+function Blog() {
   const [selectedPost, setSelectedPost] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (selectedPost) document.body.style.overflow = "hidden";
@@ -320,269 +200,97 @@ const Blog = () => {
   }, [selectedPost]);
 
   return (
-    <main className="bg-slate-50 min-h-screen">
-      {/* --- HERO SECTION: FIXED SPACING FOR NAVBAR --- */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-[#020617]">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/40 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-black/60 z-10" />
-          {/* Space/Earth Background from image_f41dd0.jpg */}
-          <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-            alt="Space BG"
-            className="w-full h-full object-cover scale-105 opacity-80"
-          />
-        </div>
-
-        {/* Added pt-40 to push content down so it's not hidden by the Header */}
-        <div className="container mx-auto px-6 relative z-20 text-center pt-40">
-          <motion.div
+    <main className="bg-warm-white min-h-screen text-charcoal font-sans overflow-x-hidden">
+      
+      {/* 1. HERO SECTION: IMMERSIVE */}
+      <section className="relative pt-48 pb-32 px-6 bg-white text-center overflow-hidden border-b border-slate-50">
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[120px] -mr-20 -mt-20 pointer-events-none" />
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }} 
+            animate={{ scale: 1, opacity: 1 }} 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/5 text-primary rounded-full text-xs font-black uppercase tracking-[0.3em] mb-12 border border-primary/10"
+          >
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            Nexus Insights
+          </motion.div>
+          <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            className="text-huge font-black mb-12"
           >
-            <span className="inline-block px-6 py-2 mb-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-[10px] font-black tracking-[.5em] uppercase">
-              Nexus Intelligence Stream
-            </span>
-            {/* Titles matched to your screenshot styling */}
-            <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-6 uppercase italic">
-              ENGINEERING <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(96,165,250,0.3)]">
-                THOUGHT.
-              </span>
-            </h1>
-          </motion.div>
+            Deep <span className="text-primary italic">Intelligence.</span> <br />
+            Nexus <span className="text-primary italic">Reports.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-2xl md:text-3xl text-slate-500 max-w-4xl mx-auto font-medium leading-relaxed"
+          >
+            Thought leadership and strategic engineering insights from the bridge of Indian innovation and global enterprise.
+          </motion.p>
         </div>
       </section>
 
-      {/* --- NEURAL FEED --- */}
-      <section className="py-32 px-6 relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 hidden lg:block"></div>
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="flex flex-col gap-32">
-            {blogData.map((post, index) => (
-              <BlogNode
-                key={post.id}
-                post={post}
-                index={index}
-                onRead={() => setSelectedPost(post)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- FULLSCREEN PROTOCOL READER --- */}
-      <AnimatePresence>
-        {selectedPost && (
-          <ProtocolReader
-            post={selectedPost}
-            onClose={() => setSelectedPost(null)}
-          />
-        )}
-      </AnimatePresence>
-    </main>
-  );
-};
-
-// --- SUB-COMPONENT: BLOG NODE ---
-const BlogNode = ({ post, index, onRead }) => {
-  const isEven = index % 2 === 0;
-  const isVideo = post.type === "video";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"}`}
-    >
-      <div className="w-full lg:w-1/2 relative group">
-        <div className="relative h-[450px] w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white transition-all duration-500 group-hover:border-[var(--grms-blue)]/20">
-          <img
-            src={isVideo ? post.videoThumbnail : post.image}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          {isVideo && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
-              <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white text-2xl border border-white/30 group-hover:bg-[var(--grms-blue)] group-hover:scale-110 transition-all cursor-pointer">
-                <FaPlay className="ml-1" />
-              </div>
+      {/* 2. BLOG GRID */}
+      <section className="py-40 px-6 relative z-10 min-h-[600px]">
+        <div className="container mx-auto max-w-7xl">
+          {blogData && blogData.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {blogData.map((post) => (
+                <BlogCard key={post.id} post={post} onRead={() => setSelectedPost(post)} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+               <p className="text-slate-400 font-black uppercase tracking-widest">Protocol Syncing... No reports found.</p>
             </div>
           )}
         </div>
-        <div
-          className={`hidden lg:block absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-[var(--grms-blue)] border-4 border-white z-20 ${isEven ? "-right-[58px]" : "-left-[58px]"}`}
-        ></div>
-      </div>
+      </section>
 
-      <div
-        className={`w-full lg:w-1/2 ${isEven ? "lg:text-left" : "lg:text-right"}`}
-      >
-        <div
-          className={`flex items-center gap-4 mb-6 ${isEven ? "justify-start" : "justify-end"}`}
-        >
-          <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase">
-            {post.date}
-          </span>
-          <div className="w-1 h-1 rounded-full bg-slate-300"></div>
-          <span className="text-[10px] font-black tracking-widest text-[var(--grms-blue)] uppercase">
-            {post.readTime}
-          </span>
-        </div>
-        <h2 className="text-4xl font-black text-slate-900 leading-tight mb-6 uppercase italic tracking-tighter">
-          {post.title}
-        </h2>
-        <p className="text-slate-500 text-lg leading-relaxed mb-10">
-          {post.excerpt}
-        </p>
-        <button
-          onClick={onRead}
-          className="inline-flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[var(--grms-blue)] transition-all shadow-lg active:scale-95"
-        >
-          Read Protocol <FaArrowRight />
-        </button>
-      </div>
-    </motion.div>
-  );
-};
+      {/* 3. MODAL */}
+      <AnimatePresence>
+        {selectedPost && (
+          <ArticleModal post={selectedPost} onClose={() => setSelectedPost(null)} />
+        )}
+      </AnimatePresence>
 
-// --- SUB-COMPONENT: FULLSCREEN READER ---
-const ProtocolReader = ({ post, onClose }) => {
-  const [completion, setCompletion] = useState(0);
-
-  useEffect(() => {
-    const container = document.getElementById("protocol-container");
-    const updateScroll = () => {
-      if (container) {
-        const current = container.scrollTop;
-        const height = container.scrollHeight - container.clientHeight;
-        setCompletion((current / height) * 100);
-      }
-    };
-    if (container) {
-      container.addEventListener("scroll", updateScroll);
-      return () => container.removeEventListener("scroll", updateScroll);
-    }
-  }, []);
-
-  return (
-    <motion.div
-      initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
-      animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-      exit={{ clipPath: "inset(100% 0% 0% 0%)" }}
-      transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-      id="protocol-container"
-      className="fixed inset-0 z-[2000] bg-white overflow-y-auto"
-    >
-      {/* Reading Progress Bar */}
-      <div
-        className="fixed top-0 left-0 h-1.5 bg-[var(--grms-blue)] z-[2100] transition-all duration-100 shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-        style={{ width: `${completion}%` }}
-      ></div>
-
-      {/* Sticky Reader Header */}
-      <div className="sticky top-0 bg-white/90 backdrop-blur-xl px-8 py-5 flex justify-between items-center border-b border-slate-100 z-[2050] shadow-sm">
-        <button
-          onClick={onClose}
-          className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-[var(--grms-blue)] transition-colors"
-        >
-          <FaChevronLeft /> Return to Feed
-        </button>
-        <div className="flex items-center gap-6">
-          <button className="text-slate-400 hover:text-[var(--grms-blue)] transition-colors">
-            <FaShareAlt />
-          </button>
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-full bg-slate-950 text-white flex items-center justify-center hover:bg-red-500 transition-all shadow-md"
-          >
-            <FaTimes />
-          </button>
-        </div>
-      </div>
-
-      {/* Article Content */}
-      <article className="container mx-auto max-w-7xl pt-10 pb-32 px-6">
-        <div className="flex flex-col lg:flex-row gap-16">
-          {/* --- MAIN CONTENT COLUMN --- */}
-          <div className="lg:w-2/3">
-            {/* <span className="text-[11px] font-black text-[var(--grms-blue)] uppercase tracking-[0.4em] mb-4 block">
-              {post.tags.join(" // ")}
-            </span> */}
-            <h1 className="text-2xl md:text-4xl font-black text-slate-950 tracking-tighter uppercase italic leading-[0.9] mb-10">
-              {post.title}
-            </h1>
-
-            <div className="h-[450px] w-full rounded-[2.5rem] overflow-hidden mb-12 shadow-2xl border border-slate-100">
-              <img
-                src={post.type === "video" ? post.videoThumbnail : post.image}
-                className="w-full h-full object-cover"
-                alt="Article Header"
-              />
-            </div>
-
-            {/* Rich Text Body */}
-            <div
-              className="prose prose-xl max-w-none prose-slate prose-headings:font-black prose-headings:uppercase prose-headings:italic prose-headings:text-slate-950 prose-p:text-slate-600 prose-p:leading-relaxed prose-blockquote:border-l-4 prose-blockquote:border-[var(--grms-blue)] prose-blockquote:bg-blue-50/50 prose-blockquote:rounded-r-2xl prose-blockquote:p-6"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          </div>
-
-          {/* --- SIDEBAR --- */}
-          <div className="lg:w-1/3">
-            <div className="sticky top-28 space-y-8">
-              <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner">
-                <h4 className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6 italic">
-                  Engineering Authority
-                </h4>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-950 flex items-center justify-center text-[var(--grms-blue)] text-xl shadow-lg border border-white/10">
-                    <FaBrain />
-                  </div>
-                  <div>
-                    <p className="text-lg font-black text-slate-950 leading-none mb-1 uppercase tracking-tighter">
-                      {post.author}
-                    </p>
-                    <p className="text-[10px] font-bold text-[var(--grms-blue)] uppercase tracking-widest">
-                      {post.authorRole}
-                    </p>
-                  </div>
-                </div>
-                <div className="space-y-3 pt-6 border-t border-slate-200">
-                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest">
-                    <span className="text-slate-400 flex items-center gap-2">
-                      <FaClock /> Data Depth
-                    </span>
-                    <span className="text-slate-900">{post.readTime}</span>
-                  </div>
-                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest">
-                    <span className="text-slate-400 flex items-center gap-2">
-                      <FaUserShield /> Status
-                    </span>
-                    <span className="text-green-600">Active Node</span>
-                  </div>
-                </div>
+      {/* 4. NEWSLETTER CTA: IMMERSIVE */}
+      <section className="py-40 px-6 bg-white text-center relative z-20">
+        <div className="container mx-auto max-w-7xl">
+          <div className="bg-secondary rounded-[4rem] p-16 md:p-32 text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <h2 className="text-mega font-black mb-12 uppercase tracking-tighter">Stay <span className="text-accent italic">Informed.</span></h2>
+              <p className="text-2xl text-blue-100/70 mb-16 max-w-2xl mx-auto font-medium">Join our strategic newsletter to receive the latest updates on digital transformation and AI architecture.</p>
+              
+              <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
+                 <input 
+                  type="email" 
+                  placeholder="ENTER EMAIL ADDRESS..." 
+                  className="w-full px-8 py-6 bg-white/5 border border-white/10 rounded-[2rem] focus:border-accent outline-none font-bold text-white text-lg backdrop-blur-sm placeholder:text-blue-100/20"
+                 />
+                 <button className="w-full md:w-auto px-12 py-6 bg-white text-secondary rounded-[2rem] font-black text-lg tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl">
+                   SUBSCRIBE
+                 </button>
               </div>
-
-              <div className="p-8 bg-[var(--grms-blue)] rounded-[2rem] text-white shadow-[0_20px_40px_rgba(59,130,246,0.3)] hover:scale-[1.02] transition-transform duration-300">
-                <p className="text-lg font-black italic mb-6 tracking-tight leading-tight">
-                  Implement this protocol in your enterprise.
-                </p>
-                <a
-                  href="/contact"
-                  className="w-full flex items-center justify-center gap-3 bg-white text-[var(--grms-blue)] py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-950 hover:text-white transition-all shadow-lg"
-                >
-                  Inquire Now <FaArrowRight />
-                </a>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </article>
-    </motion.div>
+      </section>
+
+    </main>
   );
-};
+}
 
 export default Blog;

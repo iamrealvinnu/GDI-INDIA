@@ -1,209 +1,216 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { 
   FaHeartbeat, FaUniversity, FaShoppingCart, FaTruck, 
-  FaGraduationCap, FaIndustry, FaArrowRight, FaChartBar, FaCheckCircle 
+  FaGraduationCap, FaIndustry, FaArrowRight, FaGlobe, FaCogs, FaRocket
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-};
-
-const industries = [
+const industryData = [
   {
-    id: "ID-01",
+    icon: <FaUniversity />,
+    title: "Banking & Finance",
+    description: "Secure, high-performance financial systems that handle real-time transactions and intelligent risk management.",
+    solutions: ["Fraud Detection", "Digital Wallets", "Compliance Tech"],
+    image: "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=800&q=80"
+  },
+  {
     icon: <FaHeartbeat />,
     title: "Healthcare",
-    description: "Architecting AI-powered diagnostics and secure compliance management systems.",
-    solutions: ["Medical Imaging AI", "Patient Analytics", "HIPAA Governance"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(59,130,246,0.25)]"
+    description: "Transforming patient care with secure data management and AI-driven diagnostic assistance.",
+    solutions: ["Patient Portals", "Diagnostic AI", "Medical ERP"],
+    image: "https://images.unsplash.com/photo-1538108197017-c1a966b95efd?auto=format&fit=crop&w=800&q=80"
   },
   {
-    id: "ID-02",
-    icon: <FaUniversity />,
-    title: "Finance & Banking",
-    description: "High-velocity fraud detection and algorithmic risk assessment models.",
-    solutions: ["Fraud Intelligence", "Risk Analytics", "Digital Banking"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(99,102,241,0.25)]"
-  },
-  {
-    id: "ID-03",
     icon: <FaShoppingCart />,
-    title: "Retail & Commerce",
-    description: "Neural recommendation engines and real-time inventory optimization.",
-    solutions: ["Recommendation AI", "Demand Forecasting", "Customer Mapping"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(30,58,138,0.2)]"
+    title: "Retail & E-commerce",
+    description: "Personalized shopping experiences and intelligent inventory systems for modern retail.",
+    solutions: ["Smart Recommendations", "Omnichannel Ops", "Customer Loyalty"],
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
   },
   {
-    id: "ID-04",
     icon: <FaTruck />,
-    title: "Supply Chain",
-    description: "Predictive logistics and IoT-integrated route optimization.",
-    solutions: ["Route Optimization", "IoT Integration", "Predictive Logistics"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(59,130,246,0.25)]"
+    title: "Logistics & Supply Chain",
+    description: "Streamlined operations with real-time tracking and predictive routing for global supply chains.",
+    solutions: ["Route Optimization", "Fleet Tracking", "Demand Planning"],
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
   },
   {
-    id: "ID-05",
-    icon: <FaGraduationCap />,
-    title: "Education",
-    description: "Administrative automation and personalized neural learning platforms.",
-    solutions: ["Learning Analytics", "Virtual Classrooms", "Admin Automation"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(79,70,229,0.25)]"
-  },
-  {
-    id: "ID-06",
     icon: <FaIndustry />,
     title: "Manufacturing",
-    description: "Industrial IoT and quality control automation at global scale.",
-    solutions: ["Quality Control AI", "Industrial IoT", "Scale Optimization"],
-    glow: "group-hover:shadow-[0_30px_100px_rgba(15,23,42,0.2)]"
+    description: "Industrial automation and smart factory solutions that increase production efficiency and reduce waste.",
+    solutions: ["Predictive Maintenance", "Factory IoT", "Quality Automation"],
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    icon: <FaGraduationCap />,
+    title: "Education",
+    description: "Modernizing the classroom with interactive learning platforms and automated administrative systems.",
+    solutions: ["LMS Platforms", "Virtual Classrooms", "Admin Portals"],
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
+const IndustryCard = ({ industry, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1, duration: 0.8 }}
+    viewport={{ once: true, margin: "-50px" }}
+    className="group relative overflow-hidden rounded-[3.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-2xl transition-all h-full flex flex-col"
+  >
+    <div className="relative h-64 overflow-hidden bg-slate-50">
+      <img 
+        src={`${industry.image}&w=800&q=70`} 
+        alt={industry.title} 
+        loading="lazy"
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.5s]" 
+      />
+      <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+      <div className="absolute top-6 left-6 w-14 h-14 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-primary text-2xl shadow-xl">
+        {industry.icon}
+      </div>
+    </div>
+    <div className="p-10 flex flex-col flex-grow">
+      <h3 className="text-3xl font-black text-charcoal mb-4 uppercase tracking-tighter leading-none">{industry.title}</h3>
+      <p className="text-slate-500 text-lg leading-relaxed mb-8 flex-grow font-medium">{industry.description}</p>
+      <div className="pt-8 border-t border-slate-50">
+        <div className="flex flex-wrap gap-3">
+          {industry.solutions.map((sol, i) => (
+            <span key={i} className="px-4 py-2 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
+              {sol}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 function Industries() {
   return (
-    <main className="bg-gradient-to-b from-slate-50 via-white to-slate-100 min-h-screen text-slate-900 overflow-hidden">
+    <main className="bg-warm-white min-h-screen text-charcoal font-sans overflow-hidden">
       
-      {/* --- HERO: THE SECTOR INDEX --- */}
-      <section className="relative pt-40 pb-20 px-6">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[var(--grms-blue)]/5 blur-[120px] -mr-40 pointer-events-none" />
+      {/* 1. HERO SECTION: IMMERSIVE */}
+      <section className="relative pt-40 pb-32 px-6 bg-white text-center overflow-hidden">
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/5 rounded-full blur-[120px] -mr-20 -mt-20 pointer-events-none" />
         
-        <div className="container mx-auto relative z-10 text-center lg:text-left">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <span className="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-100 bg-white/60 backdrop-blur-md text-[var(--grms-blue)] text-[10px] font-black tracking-[.4em] uppercase shadow-sm">
-              Global Domain Expertise
-            </span>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none mb-10">
-              INDUSTRIES <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--grms-blue)] to-indigo-600 italic">WE SERVE.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed">
-              Precision-engineered AI ecosystems tailored for the world's most <span className="text-slate-950 font-bold">critical sectors.</span>
-            </p>
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }} 
+            animate={{ scale: 1, opacity: 1 }} 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary/5 text-primary rounded-full text-xs font-black uppercase tracking-[0.3em] mb-12 border border-primary/10"
+          >
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            Global Impact
           </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-huge font-black mb-12"
+          >
+            Sectors We <br />
+            <span className="text-primary italic">Transform.</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-2xl md:text-3xl text-slate-500 max-w-4xl mx-auto font-medium leading-relaxed"
+          >
+            Delivering deep domain expertise and custom software architecture for the world's most critical industries.
+          </motion.p>
         </div>
       </section>
 
-      {/* --- INDUSTRY GRID: THE FLOATING CARDS --- */}
-      <section className="py-24 px-6 relative">
-        <div className="container mx-auto">
+      {/* 2. INDUSTRIES GRID */}
+      <section className="py-40 px-6">
+        <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {industries.map((item, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 50 },
-                  visible: { opacity: 1, y: 0, transition: { delay: index * 0.1, duration: 0.6 } }
-                }}
-                className="group relative h-full"
-              >
-                {/* ID Label */}
-                <div className="absolute top-6 right-8 text-[10px] font-black text-slate-300 group-hover:text-[var(--grms-blue)] tracking-[0.3em] z-20 transition-colors uppercase">
-                  {item.id}
-                </div>
-
-                {/* Card Body - Deep Shadows & Luxury Lift */}
-                <div className={`relative bg-white border border-slate-100 rounded-[3rem] p-10 h-full transition-all duration-500 transform group-hover:-translate-y-4 shadow-[0_30px_70px_rgba(0,0,0,0.07)] ${item.glow}`}>
-                  
-                  {/* Icon Block */}
-                  <div className="text-4xl text-[var(--grms-blue)] mb-8 bg-slate-50 w-20 h-20 rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--grms-blue)] group-hover:text-white transition-all duration-500 shadow-inner">
-                    {item.icon}
-                  </div>
-                  
-                  <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tighter uppercase italic leading-none">{item.title}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed mb-10">{item.description}</p>
-                  
-                  {/* Solutions Cluster */}
-                  <div className="pt-8 border-t border-slate-50 bg-slate-50/50 -mx-10 px-10 rounded-b-[3rem]">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Execution Solutions</h4>
-                    <ul className="space-y-4 pb-4">
-                      {item.solutions.map((sol, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-sm font-bold text-slate-800">
-                          <FaCheckCircle className="text-[var(--grms-blue)] text-xs" />
-                          {sol}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
+            {industryData.map((item, index) => (
+              <IndustryCard key={index} industry={item} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- STATS: THE IMPACT SCORE (COLOR UPDATED TO WHITE) --- */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto">
-          <div className="bg-[var(--grms-blue)] rounded-[4rem] p-12 lg:p-24 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.4)]">
-            {/* Ambient Background Glow */}
-            <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[var(--grms-blue)]/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* 3. IMPACT SECTION: IMMERSIVE */}
+      <section className="py-40 px-6">
+        <div className="container mx-auto max-w-7xl">
+          <div className="bg-secondary rounded-[4rem] p-16 md:p-32 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-full h-full bg-primary/5 skew-x-12 translate-x-1/2 pointer-events-none" />
             
-            <div className="relative z-10">
-              <div className="text-center mb-20">
-                {/* Icon now Pure White */}
-                <FaChartBar className="text-white text-6xl mx-auto mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
-                {/* Heading now Pure White */}
-                <h2 className="text-white text-4xl md:text-7xl font-black tracking-tighter uppercase italic drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                  THE IMPACT SCORE
+            <div className="relative z-10 grid lg:grid-cols-12 gap-20 items-center">
+              <div className="lg:col-span-7">
+                <h2 className="text-mega font-black mb-12 leading-none uppercase tracking-tighter">
+                  Driving <span className="text-accent italic">Measurable</span> <br />Results.
                 </h2>
+                <div className="space-y-12">
+                  <div className="flex gap-8">
+                    <div className="w-16 h-16 bg-white/5 rounded-[1.5rem] flex items-center justify-center text-accent text-3xl border border-white/10 shrink-0">
+                      <FaCogs />
+                    </div>
+                    <div>
+                      <h4 className="font-black text-2xl mb-3 uppercase tracking-tight">Efficiency First</h4>
+                      <p className="text-blue-100/70 text-lg font-medium leading-relaxed">We've helped clients achieve up to 40% reduction in operational overhead through smart architecture and automation.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-8">
+                    <div className="w-16 h-16 bg-white/5 rounded-[1.5rem] flex items-center justify-center text-accent text-3xl border border-white/10 shrink-0">
+                      <FaRocket />
+                    </div>
+                    <div>
+                      <h4 className="font-black text-2xl mb-3 uppercase tracking-tight">Accelerated Growth</h4>
+                      <p className="text-blue-100/70 text-lg font-medium leading-relaxed">Our scalable technical cores support 10x user growth without compromising absolute performance or stability.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
-                <StatBox number="40%" desc="Efficiency Gain in Healthcare" />
-                <StatBox number="99.5%" desc="Financial Fraud Accuracy" />
-                <StatBox number="35%" desc="Supply Chain Cost Reduction" />
+
+              <div className="lg:col-span-5 grid grid-cols-2 gap-6 w-full">
+                <div className="p-10 bg-white/5 rounded-[2.5rem] border border-white/10 text-center">
+                  <span className="block text-5xl font-black text-accent mb-3">99.9%</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">System Uptime</span>
+                </div>
+                <div className="p-10 bg-white/5 rounded-[2.5rem] border border-white/10 text-center">
+                  <span className="block text-5xl font-black text-primary mb-3">10+</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Sectors</span>
+                </div>
+                <div className="p-10 bg-white/5 rounded-[2.5rem] border border-white/10 text-center col-span-2">
+                  <span className="block text-5xl font-black text-white mb-3">GLOBAL</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Infrastructure Support</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- CTA: THE CUSTOM BUILD --- */}
-      <section className="py-40 px-6">
-        <div className="container mx-auto text-center">
-          <motion.div 
-            whileInView={{ scale: [0.98, 1], opacity: [0, 1] }}
-            className="max-w-4xl mx-auto"
+      {/* 4. CTA SECTION: IMMERSIVE */}
+      <section className="py-40 px-6 text-center bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-white/5 backdrop-blur-xl rounded-[4rem] p-16 md:p-32 border border-white/10 shadow-2xl"
           >
-            <h2 className="text-5xl md:text-8xl font-black text-slate-950 tracking-tighter mb-8 leading-none italic uppercase">
-              BEYOND <br/>
-              <span className="text-[var(--grms-blue)]">THE CATALOG.</span>
-            </h2>
-            <p className="text-xl text-slate-500 font-medium mb-12 max-w-2xl mx-auto">
-              Our AI solutions are agnostic. We build custom neural bridges for industries that demand <span className="text-slate-900 font-bold">zero-latency scaling.</span>
-            </p>
-            <a 
-              href="/contact" 
-              className="group relative inline-flex items-center gap-4 bg-slate-950 text-white px-14 py-7 rounded-full font-black text-lg hover:bg-[var(--grms-blue)] transition-all shadow-2xl hover:-translate-y-2 overflow-hidden"
+            <h2 className="text-mega font-black text-white mb-12 uppercase tracking-tighter">Ready to evolve <br /><span className="text-accent italic">Your Industry?</span></h2>
+            <p className="text-2xl text-blue-100/60 mb-16 max-w-2xl mx-auto font-medium leading-relaxed">Connect with our industry-specific engineering directors to discuss your unique technical challenges.</p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-4 px-16 py-8 bg-white text-secondary rounded-[2.5rem] font-black text-xl tracking-widest shadow-2xl hover:bg-accent hover:text-white transition-all"
             >
-              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative z-10 flex items-center gap-4 uppercase tracking-widest">
-                Request Custom Audit <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </span>
-            </a>
+              CUSTOM AUDIT
+              <FaArrowRight size={24} />
+            </Link>
           </motion.div>
         </div>
       </section>
-    </main>
-  );
-}
 
-// StatBox: High Contrast & Luxe
-function StatBox({ number, desc }) {
-  return (
-    <div className="text-center p-10 border border-white/5 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-xl transition-all hover:bg-white/[0.07] hover:border-white/10 group">
-      <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-[var(--grms-blue)] mb-4 tracking-tighter group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_25px_rgba(59,130,246,0.4)]">
-        {number}
-      </div>
-      <p className="text-white font-black uppercase text-[10px] tracking-[0.25em] leading-relaxed max-w-[180px] mx-auto opacity-90">
-        {desc}
-      </p>
-    </div>
+    </main>
   );
 }
 

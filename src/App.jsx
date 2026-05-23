@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,9 +21,18 @@ import NexusAI from "./components/pages/NexusAI";
 import BackToTop from "./components/pages/BackToTop";
 import PageTracker from "./components/PageTracker";
 
+import { motion, AnimatePresence } from "framer-motion";
+import Preloader from "./components/Preloader";
+
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <Router>
+      <AnimatePresence mode="wait">
+        {isLoading && <Preloader key="preloader" onFinish={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       <PageTracker />
 
       <Header />

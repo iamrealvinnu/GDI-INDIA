@@ -1,141 +1,141 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 import gdiLogo from "../assets/gdi_logo1.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Industries", href: "/industries" },
-    // { name: "Team", href: "/team" },
     { name: "Services", href: "/services" },
     { name: "Products", href: "/products" },
     { name: "Blog", href: "/blog" }
   ];
 
-  // Lock body scroll when mobile menu is open
+  const isDarkHero = ["/privacy", "/terms"].includes(location.pathname);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
-    return () => (document.body.style.overflow = "auto");
   }, [isOpen]);
 
   return (
     <nav
-      className="w-full z-[100] px-4 py-4"
-      style={{ top: "calc(env(safe-area-inset-top) + 1rem)" }}
+      className={`fixed top-0 w-full z-[1000] transition-all duration-500 ${
+        scrolled 
+          ? "py-4 bg-white/80 backdrop-blur-2xl shadow-2xl shadow-primary/5 border-b border-slate-100" 
+          : "py-8 bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Glass Header */}
-        <div className="relative flex items-center justify-between px-6 py-3 bg-[var(--grms-blue)] border border-white/20 backdrop-blur-xl rounded-2xl md:rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden">
-          {/* Glow */}
-          <div className="absolute -left-10 top-0 w-40 h-full bg-white/10 skew-x-[20deg] blur-2xl pointer-events-none" />
+      <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="flex items-center group">
+          <motion.img
+            whileHover={{ scale: 1.05 }}
+            src={gdiLogo}
+            alt="GDI Nexus"
+            className={`h-14 md:h-16 w-auto object-contain transition-all ${
+              !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
+            }`}
+          />
+        </Link>
 
-          {/* Logo */}
-          <a href="/" className="relative z-10">
-            <img
-              src={gdiLogo}
-              alt="GDI Nexus"
-              className="h-16 md:h-14 w-auto object-contain"
-            />
-          </a>
-
-          {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-2 bg-black/20 rounded-full px-2 py-1 border border-white/5">
+        {/* Desktop Nav - Nexus Aesthetic */}
+        <div className="hidden lg:flex items-center gap-12">
+          <ul className="flex items-center gap-10">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <motion.a
-                  href={link.href}
-                  whileHover={{ scale: 1.05 }}
-                  className="px-5 py-2 rounded-full text-xs font-bold tracking-widest text-white/90 hover:text-white hover:bg-[var(--grms-blue)] transition-all"
+                <Link
+                  to={link.href}
+                  className={`relative text-[14px] font-black uppercase tracking-[0.15em] transition-all group ${
+                    location.pathname === link.href
+                      ? "text-primary"
+                      : (!scrolled && isDarkHero ? "text-white/60 hover:text-white" : "text-slate-400 hover:text-charcoal")
+                  }`}
                 >
-                  {link.name.toUpperCase()}
-                </motion.a>
+                  {link.name}
+                  <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-primary origin-left transition-transform duration-300 ${
+                    location.pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`} />
+                </Link>
               </li>
             ))}
           </ul>
 
-          {/* CTA */}
-          <a
-            href="/contact"
-            className="hidden md:block bg-white text-[var(--grms-blue)] px-6 py-2.5 rounded-xl font-black text-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all active:scale-95"
+          <Link
+            to="/contact"
+            className={`px-10 py-4 rounded-[1.5rem] font-black text-[14px] uppercase tracking-[0.15em] transition-all shadow-xl ${
+              !scrolled && isDarkHero 
+                ? "bg-white text-secondary hover:bg-accent hover:text-white" 
+                : "bg-primary text-white hover:bg-secondary shadow-primary/20"
+            }`}
           >
-            LET&apos;S TALK
-          </a>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 relative z-50"
-          >
-            <span
-              className={`h-1 w-6 bg-white rounded-full transition-all ${
-                isOpen ? "rotate-45 translate-y-2.5" : ""
-              }`}
-            />
-            <span
-              className={`h-1 w-4 bg-white rounded-full transition-all ${
-                isOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-1 w-6 bg-white rounded-full transition-all ${
-                isOpen ? "-rotate-45 -translate-y-2.5" : ""
-              }`}
-            />
-          </button>
+            Contact Us
+          </Link>
         </div>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`lg:hidden w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
+            !scrolled && isDarkHero ? "text-white bg-white/10" : "text-charcoal bg-warm-white shadow-inner"
+          }`}
+        >
+          {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Immersive Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.96 }}
-            transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-            className="
-              fixed inset-x-4
-              top-[calc(env(safe-area-inset-top)+6rem)]
-              bg-[var(--grms-blue)]/95
-              backdrop-blur-3xl
-              border border-white/20
-              rounded-[2.5rem]
-              p-10
-              shadow-2xl
-              lg:hidden
-              z-[90]
-            "
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 lg:hidden bg-white z-[999] flex flex-col pt-32 px-12 pb-12"
           >
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_white,_transparent)] pointer-events-none" />
-
-            <div className="relative z-10 flex flex-col gap-6">
-              {navLinks.map((link, idx) => (
-                <motion.a
+            <div className="absolute top-0 right-0 w-full h-full bg-primary/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
+            
+            <ul className="space-y-8 relative z-10">
+              {navLinks.map((link, i) => (
+                <motion.li 
                   key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.08 }}
-                  onClick={() => setIsOpen(false)}
-                  className="text-3xl font-black text-white tracking-tight hover:text-blue-200"
+                  transition={{ delay: i * 0.1 }}
                 >
-                  {link.name}
-                </motion.a>
+                  <Link
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block text-5xl font-black uppercase tracking-tighter ${
+                      location.pathname === link.href ? "text-primary italic" : "text-charcoal"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.li>
               ))}
+            </ul>
 
-              <motion.a
-                href="/contact"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+            <div className="mt-auto relative z-10">
+              <Link
+                to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="mt-4 bg-white text-[var(--grms-blue)] py-5 rounded-2xl text-center font-black tracking-widest hover:scale-[1.02] transition-transform"
+                className="block w-full py-8 bg-primary text-white text-center rounded-[2.5rem] font-black text-xl uppercase tracking-widest shadow-2xl shadow-primary/20"
               >
-                INITIATE CONTACT
-              </motion.a>
+                START A PROJECT
+              </Link>
             </div>
           </motion.div>
         )}
