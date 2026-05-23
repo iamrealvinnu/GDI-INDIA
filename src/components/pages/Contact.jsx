@@ -275,8 +275,8 @@ function Contact() {
                     </div>
                     <div>
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Email Us</p>
-                      <a href="mailto:contactus@gdinexus.com" className="text-2xl font-black hover:text-accent transition-colors leading-none">
-                        contactus@gdinexus.com
+                      <a href="mailto:admin@gdinexus.in" className="text-2xl font-black hover:text-accent transition-colors leading-none">
+                        admin@gdinexus.in
                       </a>
                     </div>
                   </div>

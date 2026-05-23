@@ -138,8 +138,8 @@ function Footer() {
             <div className="space-y-6">
               <div className="flex gap-6 items-center">
                 <FaEnvelope className="text-primary text-xl mt-1" />
-                <a href="mailto:contactus@gdinexus.com" className="text-white text-lg font-black transition-all lowercase">
-                  contactus@gdinexus.com
+                <a href="mailto:admin@gdinexus.in" className="text-white text-lg font-black transition-all lowercase">
+                  admin@gdinexus.in
                 </a>
               </div>
             </div>

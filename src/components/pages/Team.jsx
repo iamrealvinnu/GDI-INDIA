@@ -16,7 +16,7 @@ const teamMembers = [
   {
     name: "Mr. Girish Girigowda",
     role: "Chief Operating Officer",
-    email: "ggirigowda@gdinexus.com",
+    email: "ggirigowda@gdinexus.in",
     linkedin: "https://www.linkedin.com/in/girish-girigowda-199b3113/",
     oneLiner: "Global strategist with Oxford training, scaling enterprise ecosystems through mission-critical leadership.",
     tags: ["Oxford Alum", "Operations Expert", "Global Strategy"],
@@ -26,7 +26,7 @@ const teamMembers = [
   {
     name: "Mr. Balaji Bheemarajan",
     role: "Operations Manager",
-    email: "bbheemraj@gdinexus.com",
+    email: "bbheemraj@gdinexus.in",
     linkedin: "https://www.linkedin.com/in/balaji-bheemarajan-899111129/",
     oneLiner: "Driving lean enterprise efficiency and resource orchestration through ERP and operational excellence.",
     tags: ["ERP Solutions", "Resource Planning", "Execution"],
@@ -36,7 +36,7 @@ const teamMembers = [
   {
     name: "Ms. Nithya Joghee",
     role: "Project Manager",
-    email: "nsandhip@gdinexus.com",
+    email: "nsandhip@gdinexus.in",
     linkedin: "https://www.linkedin.com/in/nithya-joghee-1b2736198/",
     oneLiner: "Synchronizing complex software lifecycles with surgical precision and data-driven oversight.",
     tags: ["Agile Management", "Data Analytics", "Governance"],
@@ -46,7 +46,7 @@ const teamMembers = [
   {
     name: "Mr. Vinay Gupta",
     role: "Principal AI Engineer",
-    email: "vgupta@gdinexus.com",
+    email: "vgupta@gdinexus.in",
     linkedin: "https://www.linkedin.com/in/guptavinayc/",
     oneLiner: "Engineering intelligent systems where reliability, security, and performance are built into the foundation.",
     tags: ["AI Architect", "Deep Tech", "System Integrity"],
@@ -56,7 +56,7 @@ const teamMembers = [
   {
     name: "Ms. Shanjanaa",
     role: "Technical Lead",
-    email: "sbharath@gdinexus.com",
+    email: "sbharath@gdinexus.in",
     linkedin: "#", 
     oneLiner: "Ensuring high-velocity engineering meets world-class cloud standards and structural integrity.",
     tags: ["Cloud Engineering", "Full-Stack Lead", "Security"],
@@ -66,7 +66,7 @@ const teamMembers = [
   {
     name: "Mr. Krishna Murthy",
     role: "Software Developer",
-    email: "kmurthy@gdinexus.com",
+    email: "kmurthy@gdinexus.in",
     linkedin: "https://www.linkedin.com/in/krishna-murthy-542a24218/",
     oneLiner: "Crafting modern digital interfaces where aesthetic beauty meets complex, high-performance logic.",
     tags: ["UX Architecture", "React Expert", "Interface Design"],
