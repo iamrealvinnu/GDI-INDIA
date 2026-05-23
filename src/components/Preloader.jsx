@@ -68,7 +68,6 @@ const Preloader = ({ onFinish }) => {
 
         {/* The Etching Layer */}
         <motion.div
-          layoutId="main-logo"
           initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
           animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
           transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}

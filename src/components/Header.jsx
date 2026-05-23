@@ -43,7 +43,9 @@ const Header = ({ isLoading }) => {
           <AnimatePresence>
             {!isLoading && (
               <motion.img
-                layoutId="main-logo"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
                 whileHover={{ scale: 1.05 }}
                 src={gdiLogo}
                 alt="GDI Nexus"
