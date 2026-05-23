@@ -60,7 +60,7 @@ const Preloader = ({ onFinish }) => {
       </div>
 
       {/* 2. THE LIGHT REVEAL LOGO */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col items-center">
         {/* The Base Logo (Ghost Layer) */}
         <div className="opacity-[0.04]">
           <img src={loadingLogo} alt="" className="h-80 md:h-[35rem] object-contain" />
@@ -83,6 +83,18 @@ const Preloader = ({ onFinish }) => {
           transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
           className="absolute inset-x-[-20%] h-px bg-primary shadow-[0_0_60px_15px_rgba(37,99,235,0.4)] z-20 pointer-events-none"
         />
+
+        {/* The New Tagline Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 0.4, y: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="mt-8 text-center"
+        >
+          <span className="text-[10px] md:text-[12px] font-black text-slate-900 uppercase tracking-[0.8em] ml-[0.8em] whitespace-nowrap">
+            Intelligent Software Global Scale
+          </span>
+        </motion.div>
       </div>
 
     </motion.div>

@@ -84,7 +84,7 @@ const Home = () => {
           </motion.div>
 
           <h1 className="text-huge font-black mb-16 tracking-tighter leading-[0.85] text-charcoal">
-            Simple <span className="text-primary italic">Software.</span> <br />
+            Intelligent <span className="text-primary italic">Software.</span> <br />
             Global <span className="text-primary italic">Scale.</span>
           </h1>
 
