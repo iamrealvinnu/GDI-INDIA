@@ -103,8 +103,40 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Minimalist Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#2563EB 1px, transparent 1px), linear-gradient(90deg, #2563EB 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
+        {/* Pro-Level Dynamic Isometric Grid (Undeniable 3D Depth) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.08]">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+            style={{ 
+              perspective: "1200px", 
+              width: "300vw", 
+              height: "300vh", 
+              transformStyle: "preserve-3d" 
+            }}
+          >
+            <motion.div 
+              style={{ 
+                rotateX: "65deg", 
+                rotateZ: "-45deg", 
+                width: "100%", 
+                height: "100%",
+                backgroundImage: 'linear-gradient(#2563EB 2px, transparent 2px), linear-gradient(90deg, #2563EB 2px, transparent 2px)', 
+                backgroundSize: '120px 120px'
+              }}
+              animate={{ 
+                backgroundPositionY: ["0px", "120px"],
+                backgroundPositionX: ["0px", "120px"]
+              }}
+              transition={{ 
+                duration: 10, 
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+            />
+          </motion.div>
+        </div>
       </section>
 
       {/* 2. CORE CAPABILITIES (LAYERED VERTICAL REVEAL) */}

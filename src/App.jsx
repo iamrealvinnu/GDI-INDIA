@@ -35,7 +35,7 @@ function App() {
 
       <PageTracker />
 
-      <Header />
+      <Header isLoading={isLoading} />
       <BackToTop />
       <NexusAI />
       <ScrollToTop />

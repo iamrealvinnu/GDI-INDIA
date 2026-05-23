@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import gdiLogo from "../assets/gdi_logo1.png";
 
-const Header = () => {
+const Header = ({ isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -40,14 +40,19 @@ const Header = () => {
       <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center group">
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            src={gdiLogo}
-            alt="GDI Nexus"
-            className={`h-14 md:h-16 w-auto object-contain transition-all ${
-              !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
-            }`}
-          />
+          <AnimatePresence>
+            {!isLoading && (
+              <motion.img
+                layoutId="main-logo"
+                whileHover={{ scale: 1.05 }}
+                src={gdiLogo}
+                alt="GDI Nexus"
+                className={`h-24 md:h-28 w-auto object-contain transition-all ${
+                  !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
+                }`}
+              />
+            )}
+          </AnimatePresence>
         </Link>
 
         {/* Desktop Nav - Nexus Aesthetic */}
@@ -59,12 +64,12 @@ const Header = () => {
                   to={link.href}
                   className={`relative text-[14px] font-black uppercase tracking-[0.15em] transition-all group ${
                     location.pathname === link.href
-                      ? "text-primary"
-                      : (!scrolled && isDarkHero ? "text-white/60 hover:text-white" : "text-slate-400 hover:text-charcoal")
+                      ? "text-secondary"
+                      : (!scrolled && isDarkHero ? "text-white hover:text-white/80" : "text-secondary hover:text-primary")
                   }`}
                 >
                   {link.name}
-                  <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-primary origin-left transition-transform duration-300 ${
+                  <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-secondary origin-left transition-transform duration-300 ${
                     location.pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`} />
                 </Link>

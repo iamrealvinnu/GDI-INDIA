@@ -6,73 +6,87 @@ const Preloader = ({ onFinish }) => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // 1. Reveal completes at 1.2s.
+    // 2. We finish the preloader immediately after the reveal to trigger the unmount & exit animation.
     const timer = setTimeout(() => {
       setIsReady(true);
-      setTimeout(onFinish, 1800); 
-    }, 3500);
+      setTimeout(onFinish, 800); // Fast finish for instant home page entry
+    }, 1300);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
 
   return (
-    <div className="fixed inset-0 z-[10000] bg-[#F8FAFC] flex flex-col items-center justify-center overflow-hidden">
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+      className="fixed inset-0 z-[10000] bg-[#F8FAFC] flex flex-col items-center justify-center overflow-hidden"
+    >
       
-      {/* 1. THE MONOLITH WATERMARK (GDI NEXUS + SOFTW4RE SOLUTIONS) */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none text-center">
+      {/* 1. THE ISOMETRIC SCHEMATIC PLANE */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 0.04, scale: 1 }}
-          transition={{ duration: 4, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center w-full px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.15 }}
+          transition={{ duration: 1.5 }}
+          style={{ 
+            perspective: "1000px", 
+            width: "300vw", 
+            height: "300vh", 
+            transformStyle: "preserve-3d" 
+          }}
         >
-          <h2 className="text-[15vw] md:text-[12vw] font-black tracking-tighter text-slate-900 leading-none uppercase whitespace-nowrap">
-            GDI NEXUS
-          </h2>
-          <h3 className="text-[4.5vw] md:text-[3vw] font-bold tracking-[0.3em] md:tracking-[0.45em] text-slate-900 uppercase mt-2 md:mt-4 whitespace-nowrap">
-            SOFTWARE SOLUTIONS
-          </h3>
+          <motion.div 
+            style={{ 
+              rotateX: "60deg", 
+              rotateZ: "-45deg", 
+              width: "100%", 
+              height: "100%",
+              backgroundImage: 'linear-gradient(#2563EB 1.5px, transparent 1.5px), linear-gradient(90deg, #2563EB 1.5px, transparent 1.5px)', 
+              backgroundSize: '80px 80px'
+            }}
+            animate={{ 
+              backgroundPositionY: ["0px", "80px"],
+              backgroundPositionX: ["0px", "80px"]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          />
         </motion.div>
       </div>
 
       {/* 2. THE LIGHT REVEAL LOGO */}
-      <div className="relative">
+      <div className="relative z-10">
         {/* The Base Logo (Ghost Layer) */}
-        <div className="opacity-[0.03]">
-          <img src={loadingLogo} alt="" className="h-[20rem] md:h-[35rem] object-contain" />
+        <div className="opacity-[0.04]">
+          <img src={loadingLogo} alt="" className="h-80 md:h-[35rem] object-contain" />
         </div>
 
-        {/* The Etching Logo (Revealed Layer) */}
+        {/* The Etching Layer */}
         <motion.div
+          layoutId="main-logo"
           initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
           animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-          transition={{ duration: 3, ease: [0.65, 0, 0.35, 1], delay: 0.5 }}
+          transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
           className="absolute inset-0"
         >
-          <img src={loadingLogo} alt="GDI Nexus" className="h-[20rem] md:h-[35rem] object-contain" />
+          <img src={loadingLogo} alt="GDI Nexus" className="h-80 md:h-[35rem] object-contain" />
         </motion.div>
 
         {/* The Sweeping Light Beam */}
         <motion.div 
           initial={{ top: "100%", opacity: 0 }}
           animate={{ top: "-20%", opacity: [0, 1, 0] }}
-          transition={{ duration: 3, ease: [0.65, 0, 0.35, 1], delay: 0.5 }}
-          className="absolute inset-x-[-30%] h-px bg-primary shadow-[0_0_80px_20px_rgba(37,99,235,0.4)] z-20 pointer-events-none"
+          transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
+          className="absolute inset-x-[-20%] h-px bg-primary shadow-[0_0_60px_15px_rgba(37,99,235,0.4)] z-20 pointer-events-none"
         />
       </div>
 
-      {/* 3. THE LIGHT EXPANSION EXIT (IRIS) */}
-      <AnimatePresence>
-        {isReady && (
-          <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 20, opacity: 1 }}
-            transition={{ duration: 1.8, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute z-50 w-24 h-24 bg-[#F8FAFC] rounded-full"
-          />
-        )}
-      </AnimatePresence>
-
-    </div>
+    </motion.div>
   );
 };
 

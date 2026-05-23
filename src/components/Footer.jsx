@@ -45,10 +45,29 @@ function Footer() {
 
   return (
     <footer className="relative bg-secondary text-white pt-32 pb-12 overflow-hidden border-t border-white/5">
-      {/* Background Accent: Immersive Gradient */}
+      {/* Background Accent: Immersive Gradient & Isometric Grid */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-primary/20 rounded-full blur-[120px] -mr-32 -mt-32" />
         <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-accent/10 rounded-full blur-[100px] -ml-20 -mb-20" />
+      </div>
+
+      {/* Pro-Level Dark Isometric Grid (High Visibility) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.08]">
+        <div style={{ 
+          perspective: "1200px", 
+          width: "300vw", 
+          height: "300vh", 
+          transformStyle: "preserve-3d" 
+        }}>
+          <div style={{ 
+            rotateX: "65deg", 
+            rotateZ: "-45deg", 
+            width: "100%", 
+            height: "100%",
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.4) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,0.4) 1.5px, transparent 1.5px)', 
+            backgroundSize: '140px 140px'
+          }} />
+        </div>
       </div>
 
       <div className="container mx-auto px-8 relative z-10 max-w-7xl">
