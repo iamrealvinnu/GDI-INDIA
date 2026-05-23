@@ -84,16 +84,23 @@ const Preloader = ({ onFinish }) => {
           className="absolute inset-x-[-20%] h-px bg-primary shadow-[0_0_60px_15px_rgba(37,99,235,0.4)] z-20 pointer-events-none"
         />
 
-        {/* The New Tagline Reveal */}
+        {/* The Refined Tagline Lockup */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 0.4, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-8 text-center"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 0.8 }}
+          className="mt-12 flex flex-col items-center gap-6"
         >
-          <span className="text-[10px] md:text-[12px] font-black text-slate-900 uppercase tracking-[0.8em] ml-[0.8em] whitespace-nowrap">
-            Intelligent Software Global Scale
-          </span>
+          <div className="w-12 h-px bg-secondary/10" />
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-8">
+            <span className="text-[11px] font-black text-secondary uppercase tracking-[0.5em] whitespace-nowrap">
+              Intelligent Software
+            </span>
+            <div className="hidden md:block w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[11px] font-black text-primary uppercase tracking-[0.5em] whitespace-nowrap">
+              Global Scale
+            </span>
+          </div>
         </motion.div>
       </div>
 
