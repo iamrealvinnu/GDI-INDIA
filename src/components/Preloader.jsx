@@ -10,7 +10,7 @@ const Preloader = ({ onFinish }) => {
     // 2. We finish the preloader immediately after the reveal to trigger the unmount & exit animation.
     const timer = setTimeout(() => {
       setIsReady(true);
-      setTimeout(onFinish, 800); // Fast finish for instant home page entry
+      setTimeout(onFinish, 1000); // Fast finish for instant home page entry
     }, 1300);
 
     return () => clearTimeout(timer);
