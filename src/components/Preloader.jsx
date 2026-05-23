@@ -84,17 +84,25 @@ const Preloader = ({ onFinish }) => {
           className="absolute inset-x-[-20%] h-px bg-primary shadow-[0_0_60px_15px_rgba(37,99,235,0.4)] z-20 pointer-events-none"
         />
 
-        {/* The Simple Straight Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 0.5, y: 0 }}
-          transition={{ duration: 1.5, delay: 0.8 }}
-          className="mt-12 text-center"
-        >
-          <span className="text-[11px] md:text-[13px] font-black text-secondary uppercase tracking-[0.5em] whitespace-nowrap">
+        {/* The Adapted Architectural Tagline */}
+        <div className="relative mt-12 h-8 flex items-center justify-center overflow-hidden">
+          {/* Ghost Tagline */}
+          <div className="opacity-[0.05] text-[10px] md:text-[12px] font-black text-secondary uppercase tracking-[1em] ml-[1em] whitespace-nowrap">
             Intelligent Software Global Scale
-          </span>
-        </motion.div>
+          </div>
+          
+          {/* Revealed Tagline (Synchronized Etching) */}
+          <motion.div
+            initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1], delay: 0.8 }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <span className="text-[10px] md:text-[12px] font-black text-secondary/60 uppercase tracking-[1em] ml-[1em] whitespace-nowrap">
+              Intelligent Software Global Scale
+            </span>
+          </motion.div>
+        </div>
       </div>
 
     </motion.div>
