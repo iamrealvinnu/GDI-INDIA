@@ -38,7 +38,7 @@ const Header = ({ isLoading }) => {
       }`}
     >
       <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo - Restored Large Scale & Precision Aligned */}
         <Link to="/" className="flex items-center group">
           <AnimatePresence>
             {!isLoading && (
@@ -49,7 +49,7 @@ const Header = ({ isLoading }) => {
                 whileHover={{ scale: 1.05 }}
                 src={gdiLogo}
                 alt="GDI Nexus"
-                className={`h-24 md:h-28 w-auto object-contain transition-all ${
+                className={`h-20 md:h-24 w-auto object-contain transition-all ${
                   !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
                 }`}
               />

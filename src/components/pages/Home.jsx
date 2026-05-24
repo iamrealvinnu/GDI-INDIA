@@ -77,10 +77,11 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-warm-white border border-slate-100 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-16 shadow-inner text-slate-400"
+            className="inline-flex items-center px-8 py-4 bg-warm-white border border-slate-100 rounded-full text-[11px] font-black uppercase tracking-[0.4em] mb-16 shadow-inner"
           >
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            Global Engineering Standard
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Growth Driven Intelligence
+            </span>
           </motion.div>
 
           <h1 className="text-huge font-black mb-16 tracking-tighter leading-[0.85] text-charcoal">
@@ -88,7 +89,7 @@ const Home = () => {
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Global <span className="italic">Scale.</span></span>
           </h1>
 
-          <p className="text-2xl md:text-3xl text-slate-400 max-w-4xl mx-auto mb-20 font-medium leading-relaxed">
+          <p className="text-2xl md:text-3xl text-slate-600 max-w-4xl mx-auto mb-20 font-medium leading-relaxed">
             We architect high-fidelity technical cores for enterprises that demand absolute reliability and seamless growth.
           </p>
 

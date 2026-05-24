@@ -117,7 +117,7 @@ function Services() {
             className="text-huge font-black mb-12"
           >
             Our Technical <br />
-            <span className="text-primary italic">Capabilities.</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Capabilities.</span>
           </motion.h1>
           
           <motion.p 
