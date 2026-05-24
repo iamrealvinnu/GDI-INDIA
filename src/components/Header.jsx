@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import gdiLogo from "../assets/gdi_logo1.png";
+import gdiIcon from "../assets/gdi-icon.png";
+import gdiName from "../assets/gdi-name-header.png";
 
 const Header = ({ isLoading }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,23 +39,22 @@ const Header = ({ isLoading }) => {
       }`}
     >
       <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
-        {/* Logo - Restored Large Scale & Precision Aligned */}
-        <Link to="/" className="flex items-center group">
-          <AnimatePresence>
-            {!isLoading && (
-              <motion.img
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.05 }}
-                src={gdiLogo}
-                alt="GDI Nexus"
-                className={`h-16 md:h-20 w-auto object-contain transition-all ${
-                  !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
-                }`}
-              />
-            )}
-          </AnimatePresence>
+        {/* Brand Lockup: Icon Top (Smaller) + Name Bottom (Larger) */}
+        <Link to="/" className="flex flex-col items-center group gap-1 py-1">
+          <motion.img
+            src={gdiIcon}
+            alt=""
+            className={`h-6 md:h-8 w-auto object-contain transition-all ${
+              !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
+            }`}
+          />
+          <motion.img
+            src={gdiName}
+            alt="GDI Nexus"
+            className={`h-8 md:h-12 w-auto object-contain transition-all ${
+              !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
+            }`}
+          />
         </Link>
 
         {/* Desktop Nav - Nexus Aesthetic */}
