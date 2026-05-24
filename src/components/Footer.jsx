@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import gdiLogo from "../assets/gdi_logo1.png";
-import sdvosbLogo from "../assets/SBA-SDVOSB-Logo.png";
 import isoLogo from "../assets/iso.png";
 import microsoftLogo from "../assets/Microsoft_logo.svg";
 import axios from "axios";
@@ -140,18 +139,9 @@ function Footer() {
         </div>
 
         {/* Bottom Tier: Certifications & Legal */}
-        <div className="py-12 flex flex-col xl:flex-row items-center justify-between gap-12">
-          {/* Left Side: SBA SDVOSB */}
-          <div className="flex items-center gap-6 bg-white/5 px-8 py-4 rounded-2xl border border-white/10">
-             <img src={sdvosbLogo} alt="SBA SDVOSB" className="h-16 w-auto" />
-             <div className="text-left border-l border-white/10 pl-6">
-                <p className="text-[9px] font-black text-accent uppercase tracking-widest">SBA SDVOSB Partner</p>
-                <p className="text-[10px] font-black text-blue-100/40 uppercase tracking-tighter">GST: 33ABBFG6793J1Z3 | TAN: CMBG08053D</p>
-             </div>
-          </div>
-          
-          {/* Right Side: Global Partners & ISO */}
-          <div className="flex flex-wrap justify-center xl:justify-end gap-6">
+        <div className="py-12 flex flex-col xl:flex-row items-center justify-center gap-12">
+          {/* Global Partners & ISO */}
+          <div className="flex flex-wrap justify-center gap-6">
             <div className="flex items-center gap-6 bg-white/5 px-8 py-4 rounded-2xl border border-white/10">
                <img src={microsoftLogo} alt="Microsoft Cloud Partner" className="h-10 w-auto" />
                <div className="text-left border-l border-white/10 pl-6">
