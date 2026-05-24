@@ -81,10 +81,10 @@ const Header = ({ isLoading }) => {
 
           <Link
             to="/contact"
-            className={`px-10 py-4 rounded-[1.5rem] font-black text-[14px] uppercase tracking-[0.15em] transition-all shadow-xl ${
+            className={`px-10 py-4 rounded-[1.5rem] font-black text-[14px] uppercase tracking-[0.15em] transition-all shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] ${
               !scrolled && isDarkHero 
                 ? "bg-white text-secondary hover:bg-accent hover:text-white" 
-                : "bg-primary text-white hover:bg-secondary shadow-primary/20"
+                : "bg-gradient-to-r from-primary to-secondary text-white shadow-primary/20"
             }`}
           >
             Contact Us

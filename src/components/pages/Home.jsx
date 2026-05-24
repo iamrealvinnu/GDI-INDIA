@@ -84,8 +84,8 @@ const Home = () => {
           </motion.div>
 
           <h1 className="text-huge font-black mb-16 tracking-tighter leading-[0.85] text-charcoal">
-            Intelligent <span className="text-primary italic">Software.</span> <br />
-            Global <span className="text-primary italic">Scale.</span>
+            Intelligent <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Software.</span> <br />
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Global <span className="italic">Scale.</span></span>
           </h1>
 
           <p className="text-2xl md:text-3xl text-slate-400 max-w-4xl mx-auto mb-20 font-medium leading-relaxed">
@@ -95,7 +95,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-8 justify-center">
             <Link
               to="/services"
-              className="px-16 py-8 bg-primary text-white rounded-[2rem] font-black text-xs tracking-[0.3em] hover:bg-secondary transition-all shadow-2xl shadow-primary/20 flex items-center justify-center gap-6 group"
+              className="px-16 py-8 bg-gradient-to-r from-primary to-secondary text-white rounded-[2rem] font-black text-xs tracking-[0.3em] hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl shadow-primary/20 flex items-center justify-center gap-6 group"
             >
               EXPLORE THE CORE
               <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
@@ -340,7 +340,7 @@ const Home = () => {
               </p>
               <Link
                 to="/contact"
-                className="inline-flex px-20 py-10 bg-primary text-white rounded-[3rem] font-black text-2xl tracking-widest hover:bg-secondary transition-all shadow-2xl shadow-primary/20 group items-center gap-8"
+                className="inline-flex px-20 py-10 bg-gradient-to-r from-primary to-secondary text-white rounded-[3rem] font-black text-2xl tracking-widest hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl shadow-primary/20 group items-center gap-8"
               >
                 CONTACT THE FIRM
                 <FaArrowRight size={32} className="group-hover:translate-x-4 transition-transform" />

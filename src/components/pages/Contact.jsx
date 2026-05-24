@@ -247,7 +247,7 @@ function Contact() {
                   type="submit"
                   disabled={loading}
                   className={`w-full py-8 rounded-[2rem] font-black text-lg tracking-widest transition-all uppercase flex items-center justify-center gap-4
-                    ${loading ? "bg-slate-200 text-slate-400 cursor-not-allowed" : "bg-primary text-white hover:bg-secondary shadow-2xl shadow-primary/20"}`}
+                    ${loading ? "bg-slate-200 text-slate-400 cursor-not-allowed" : "bg-gradient-to-r from-primary to-secondary text-white hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-primary/20"}`}
                 >
                   {loading ? "Transmitting..." : "Send Briefing"}
                   {!loading && <FaPaperPlane />}
