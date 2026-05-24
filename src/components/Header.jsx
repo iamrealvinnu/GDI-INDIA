@@ -39,19 +39,19 @@ const Header = ({ isLoading }) => {
       }`}
     >
       <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
-        {/* Brand Lockup: Icon Top (Smaller) + Name Bottom (Larger) */}
-        <Link to="/" className="flex flex-col items-center group gap-1 py-1">
+        {/* Brand Lockup: Icon Top + Name Bottom (Balanced Proportions) */}
+        <Link to="/" className="flex flex-col items-center group gap-2 py-1">
           <motion.img
             src={gdiIcon}
             alt=""
-            className={`h-6 md:h-8 w-auto object-contain transition-all ${
+            className={`h-8 md:h-11 w-auto object-contain transition-all ${
               !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
             }`}
           />
           <motion.img
             src={gdiName}
             alt="GDI Nexus"
-            className={`h-8 md:h-12 w-auto object-contain transition-all ${
+            className={`h-8 md:h-11 w-auto object-contain transition-all ${
               !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
             }`}
           />
