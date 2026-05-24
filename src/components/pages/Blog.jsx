@@ -43,6 +43,10 @@ const blogData = [
     content: `
       <h2>Moving Beyond Generic Models</h2>
       <p>While general-purpose AI has captured the world's imagination, its utility in a corporate setting is often limited by a lack of context. A model that doesn't understand your industry's specific regulations, terminology, and customer needs can often do more harm than good.</p>
+      <p>We specialize in building "Context-Aware" AI systems. By fine-tuning models on proprietary datasets within secure boundaries, we ensure that the output is not only accurate but also actionable.</p>
+      <hr/>
+      <h2>The ROI of Specialized Intelligence</h2>
+      <p>Companies that invest in custom AI solutions see a significantly higher return on investment than those relying on off-the-shelf tools. This is because specialized models can automate complex workflows that generic ones simply can't touch.</p>
     `,
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
     author: "Nithya Joghee",
@@ -59,6 +63,7 @@ const blogData = [
     content: `
       <h2>The Death of the Perimeter</h2>
       <p>In a world of remote work and cloud-native apps, the old idea of a "secure perimeter" is dead. Attackers are increasingly targeting identity rather than just firewalls.</p>
+      <p>Zero-Trust is the answer. It's a security model based on the principle of "never trust, always verify." Every request, whether it comes from inside or outside the network, must be authenticated and authorized.</p>
     `,
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
     author: "Girish Girigowda",
@@ -221,8 +226,8 @@ function Blog() {
             transition={{ duration: 1 }}
             className="text-huge font-black mb-12"
           >
-            Deep <span className="text-primary italic">Intelligence.</span> <br />
-            Nexus <span className="text-primary italic">Reports.</span>
+            Deep <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Intelligence.</span> <br />
+            Nexus <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Reports.</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -280,7 +285,7 @@ function Blog() {
                   placeholder="ENTER EMAIL ADDRESS..." 
                   className="w-full px-8 py-6 bg-white/5 border border-white/10 rounded-[2rem] focus:border-accent outline-none font-bold text-white text-lg backdrop-blur-sm placeholder:text-blue-100/20"
                  />
-                 <button className="w-full md:w-auto px-12 py-6 bg-white text-secondary rounded-[2rem] font-black text-lg tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl">
+                 <button className="w-full md:w-auto px-12 py-6 bg-gradient-to-r from-primary to-secondary text-white rounded-[2rem] font-black text-lg tracking-widest hover:shadow-primary/40 hover:scale-[1.02] transition-all shadow-2xl">
                    SUBSCRIBE
                  </button>
               </div>

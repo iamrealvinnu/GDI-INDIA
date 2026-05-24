@@ -119,7 +119,7 @@ const ProductCard = ({ product, index }) => (
             </li>
           ))}
         </ul>
-        <Link to="/contact" className="inline-flex items-center gap-4 bg-primary text-white px-10 py-5 rounded-[2rem] font-black text-xs tracking-widest hover:bg-secondary transition-all shadow-xl shadow-primary/20 group">
+        <Link to="/contact" className="inline-flex items-center gap-4 bg-gradient-to-r from-primary to-secondary text-white px-10 py-5 rounded-[2rem] font-black text-xs tracking-widest hover:shadow-primary/40 hover:scale-[1.02] transition-all shadow-xl shadow-primary/20 group">
           EXPLORE PRODUCT 
           <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
         </Link>
@@ -163,8 +163,8 @@ function Products() {
             transition={{ duration: 1 }}
             className="text-huge font-black mb-12"
           >
-            Built <span className="text-primary italic">Solutions.</span> <br />
-            Digital <span className="text-primary italic">Assets.</span>
+            Built <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Solutions.</span> <br />
+            Digital <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Assets.</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -254,7 +254,7 @@ function Products() {
              <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
              <h2 className="text-mega font-black mb-12 uppercase tracking-tighter">Ready for a <br /><span className="text-accent italic">Technical Demo?</span></h2>
              <p className="text-2xl text-blue-100/70 mb-16 max-w-2xl mx-auto font-medium leading-relaxed">Experience how our built solutions can modernize your business workflows and drive absolute efficiency.</p>
-             <Link to="/contact" className="inline-flex items-center gap-4 px-16 py-8 bg-white text-secondary rounded-[3rem] font-black text-xl tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl shadow-white/10">
+             <Link to="/contact" className="inline-flex items-center gap-4 px-16 py-8 bg-gradient-to-r from-primary to-secondary text-white rounded-[3rem] font-black text-xl tracking-widest hover:shadow-primary/40 hover:scale-[1.02] transition-all shadow-2xl shadow-primary/20">
                SCHEDULE A DEMO <FaArrowRight />
              </Link>
           </div>

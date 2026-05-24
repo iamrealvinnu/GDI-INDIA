@@ -66,8 +66,8 @@ function About() {
             transition={{ duration: 1 }}
             className="text-huge font-black mb-12"
           >
-            Rooted in <span className="text-primary italic">India.</span> <br />
-            Scaled <span className="text-primary italic">Globally.</span>
+            Rooted in <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">India.</span> <br />
+            Scaled <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic">Globally.</span>
           </motion.h1>
 
           <motion.p 
@@ -178,7 +178,7 @@ function About() {
                  <img src={microsoftLogo} alt="Microsoft" className="h-10 md:h-12 w-auto" />
                  <div className="border-l border-white/20 pl-6">
                    <p className="text-[10px] font-black text-accent uppercase tracking-[0.4em] mb-1 leading-none">Microsoft Cloud Service Partner</p>
-                   <p className="text-2xl font-black text-white tracking-tight uppercase">Digital & App Innovation</p>
+                   <p className="text-xl font-black text-white tracking-tight uppercase">Digital & App Innovation</p>
                  </div>
               </div>
               
@@ -191,7 +191,7 @@ function About() {
               
               <Link 
                 to="/contact" 
-                className="inline-flex items-center gap-4 bg-white text-secondary px-10 py-5 rounded-[2rem] font-black text-lg tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl"
+                className="inline-flex items-center gap-4 bg-gradient-to-r from-primary to-secondary text-white px-12 py-6 rounded-[2.5rem] font-black text-lg tracking-widest hover:shadow-primary/40 hover:scale-[1.02] transition-all shadow-2xl"
               >
                 START A PROJECT
                 <FaArrowRight />
