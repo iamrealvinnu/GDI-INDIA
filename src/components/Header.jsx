@@ -49,7 +49,7 @@ const Header = ({ isLoading }) => {
                 whileHover={{ scale: 1.05 }}
                 src={gdiLogo}
                 alt="GDI Nexus"
-                className={`h-20 md:h-24 w-auto object-contain transition-all ${
+                className={`h-16 md:h-20 w-auto object-contain transition-all ${
                   !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
                 }`}
               />
