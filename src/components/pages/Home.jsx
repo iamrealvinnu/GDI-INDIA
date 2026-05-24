@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const CapabilitySection = ({ index, title, subtitle, desc, icon, bg, textColor, sticky = true }) => {
   return (
     <section 
-      className={`${sticky ? "sticky top-0" : "relative"} h-screen w-full flex items-center justify-center px-6 overflow-hidden ${bg} ${textColor}`}
+      className={`${sticky ? "lg:sticky lg:top-0" : "relative"} min-h-screen py-24 lg:py-0 w-full flex items-center justify-center px-6 overflow-hidden ${bg} ${textColor}`}
     >
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -61,7 +61,7 @@ const Home = () => {
     <main className="bg-white text-charcoal font-sans selection:bg-primary selection:text-white">
       
       {/* 1. ELEGANT HERO (AIRY & AUTHORITATIVE) */}
-      <section className="relative h-screen flex items-center justify-center px-6 overflow-hidden bg-white">
+      <section className="relative min-h-screen py-32 lg:py-0 flex items-center justify-center px-6 overflow-hidden bg-white">
         {/* Soft Radial Gradient Background */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-primary/5 rounded-full blur-[120px]" />

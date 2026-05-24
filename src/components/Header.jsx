@@ -35,23 +35,23 @@ const Header = ({ isLoading }) => {
       className={`fixed top-0 w-full z-[1000] transition-all duration-500 ${
         scrolled 
           ? "py-4 bg-white/80 backdrop-blur-2xl shadow-2xl shadow-primary/5 border-b border-slate-100" 
-          : "py-8 bg-transparent"
+          : "py-6 md:py-8 bg-transparent"
       }`}
     >
-      <div className="container mx-auto max-w-7xl px-8 flex items-center justify-between">
-        {/* Brand Lockup: Icon Top + Name Bottom (Balanced Proportions) */}
+      <div className="container mx-auto max-w-7xl px-6 md:px-8 flex items-center justify-between">
+        {/* Brand Lockup: Icon Top + Name Bottom (Restored Vertical Stack & Slightly Larger) */}
         <Link to="/" className="flex flex-col items-center group gap-2 py-1">
           <motion.img
             src={gdiIcon}
             alt=""
-            className={`h-8 md:h-11 w-auto object-contain transition-all ${
+            className={`h-10 md:h-12 w-auto object-contain transition-all ${
               !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
             }`}
           />
           <motion.img
             src={gdiName}
             alt="GDI Nexus"
-            className={`h-8 md:h-11 w-auto object-contain transition-all ${
+            className={`h-6 md:h-8 w-auto object-contain transition-all ${
               !scrolled && isDarkHero ? "brightness-200" : "brightness-100"
             }`}
           />
