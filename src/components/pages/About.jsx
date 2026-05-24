@@ -13,6 +13,7 @@ import {
   FaAward
 } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
+import microsoftLogo from "../../assets/Microsoft_logo.svg";
 
 const ValueBlock = ({ title, desc, icon, index }) => {
   return (
@@ -166,31 +167,31 @@ function About() {
         </div>
       </section>
 
-      {/* 4. PARTNER SECTION: FULL WIDTH IMMERSIVE */}
+      {/* 4. PARTNER SECTION: COMPACT IMMERSIVE */}
       <section className="py-40 px-6">
         <div className="container mx-auto max-w-7xl">
-          <div className="bg-secondary rounded-[4rem] p-16 md:p-32 text-white flex flex-col lg:grid lg:grid-cols-12 items-center gap-20 relative overflow-hidden">
+          <div className="bg-secondary rounded-[3.5rem] p-12 md:p-20 text-white flex flex-col lg:grid lg:grid-cols-12 items-center gap-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[50%] h-full bg-primary/5 skew-x-12 translate-x-1/2 pointer-events-none" />
             
             <div className="relative z-10 lg:col-span-7">
               <div className="flex items-center gap-6 mb-12">
-                 <FaMicrosoft className="text-7xl text-blue-500" />
-                 <div>
-                   <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Certified Partner</p>
-                   <p className="text-xl font-bold text-white tracking-tight">Digital & Cloud Innovation</p>
+                 <img src={microsoftLogo} alt="Microsoft" className="h-10 md:h-12 w-auto" />
+                 <div className="border-l border-white/20 pl-6">
+                   <p className="text-[10px] font-black text-accent uppercase tracking-[0.4em] mb-1 leading-none">Microsoft Cloud Service Partner</p>
+                   <p className="text-2xl font-black text-white tracking-tight uppercase">Digital & App Innovation</p>
                  </div>
               </div>
               
-              <h2 className="text-mega font-black mb-10 uppercase leading-none tracking-tighter">
-                Empowered by <br /><span className="text-accent italic">Global Partnerships.</span>
+              <h2 className="text-5xl font-black mb-8 uppercase leading-tight tracking-tighter">
+                Scalable Azure <br /><span className="text-accent italic">Infrastructure.</span>
               </h2>
-              <p className="text-2xl text-blue-100/70 leading-relaxed font-medium mb-12">
-                By leveraging our partnership with Microsoft Azure, we deliver secure, scalable, and world-class infrastructure to our clients globally.
+              <p className="text-xl text-blue-100/70 leading-relaxed font-medium mb-10 max-w-xl">
+                As a certified partner, we leverage the elite power of the Microsoft Cloud to deliver secure, innovative, and transformation-ready ecosystems for the modern world.
               </p>
               
               <Link 
                 to="/contact" 
-                className="inline-flex items-center gap-4 bg-white text-secondary px-12 py-6 rounded-[2.5rem] font-black text-lg tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl shadow-white/5"
+                className="inline-flex items-center gap-4 bg-white text-secondary px-10 py-5 rounded-[2rem] font-black text-lg tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl"
               >
                 START A PROJECT
                 <FaArrowRight />

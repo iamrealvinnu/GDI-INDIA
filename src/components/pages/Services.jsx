@@ -5,6 +5,7 @@ import {
   FaPaintBrush, FaBuilding, FaArrowRight, FaCheckCircle, FaMicrosoft
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import microsoftLogo from "../../assets/Microsoft_logo.svg";
 
 const services = [
   {
@@ -141,10 +142,10 @@ function Services() {
         </div>
       </section>
 
-      {/* 3. PARTNERSHIP CTA: IMMERSIVE */}
+      {/* 3. PARTNERSHIP CTA: COMPACT IMMERSIVE */}
       <section className="py-40 px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
-          <div className="bg-secondary rounded-[4rem] p-16 md:p-32 text-center text-white relative overflow-hidden">
+          <div className="bg-secondary rounded-[3.5rem] p-12 md:p-24 text-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
             
             <motion.div
@@ -153,19 +154,19 @@ function Services() {
               viewport={{ once: true }}
               className="relative z-10"
             >
-              <div className="inline-flex items-center gap-6 mb-12 p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm">
-                 <FaMicrosoft className="text-5xl text-blue-500" />
-                 <div className="text-left">
-                   <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] leading-none mb-2">Global Solutions Partner</p>
-                   <p className="text-xl font-bold text-white tracking-tight">Microsoft Cloud Expertise</p>
+              <div className="inline-flex items-center gap-8 mb-10 p-6 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm">
+                 <img src={microsoftLogo} alt="Microsoft" className="h-10 md:h-12 w-auto" />
+                 <div className="text-left border-l border-white/20 pl-6">
+                   <p className="text-[10px] font-black text-accent uppercase tracking-[0.4em] leading-none mb-2">Microsoft Cloud Service Partner</p>
+                   <p className="text-xl font-bold text-white tracking-tight uppercase">Digital & App Innovation</p>
                  </div>
               </div>
               
-              <h2 className="text-mega font-black mb-12 uppercase tracking-tighter">
-                Ready to transform <br /><span className="text-accent italic">Your Business?</span>
+              <h2 className="text-5xl font-black mb-10 uppercase tracking-tighter">
+                Scalable Azure <br /><span className="text-accent italic">Infrastructure.</span>
               </h2>
-              <p className="text-2xl text-blue-100/70 mb-16 max-w-2xl mx-auto font-medium leading-relaxed">
-                Whether you're a startup or a global enterprise, we have the expertise to help you scale your technical core.
+              <p className="text-xl text-blue-100/70 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+                As a certified partner, we leverage the elite power of the Microsoft Cloud to deliver secure, innovative, and transformation-ready ecosystems for the modern world.
               </p>
               
               <Link 
